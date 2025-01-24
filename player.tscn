@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://44wdpnlupmm2"]
+
+[ext_resource type="Texture2D" uid="uid://cu8qoswvpwk7n" path="res://Assets/Player/swim_slow.png" id="1_p1fdi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqu1j"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smkss"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmoop"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trrpq"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i55d"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lkdj"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w260p"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(192, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34d4p"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(224, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs8at"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(256, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgfq4"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(288, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyid2"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(320, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_splk4"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(352, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfwri"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(384, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s2cy"]
+atlas = ExtResource("1_p1fdi")
+region = Rect2(416, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfwot"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqu1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smkss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmoop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trrpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i55d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lkdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w260p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34d4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vs8at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgfq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyid2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_splk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfwri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s2cy")
+}],
+"loop": true,
+"name": &"swim_slow",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+
+[node name="DiverSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gfwot")
+animation = &"swim_slow"
+autoplay = "swim_slow"
+frame_progress = 0.130371

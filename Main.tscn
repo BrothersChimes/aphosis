@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfrgbs2tvoog2"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_6yyh5"]
+[ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="1_abpg7"]
+[ext_resource type="PackedScene" uid="uid://44wdpnlupmm2" path="res://player.tscn" id="2_i4oek"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6yyh5")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(583.5, 328.5)
+scale = Vector2(1.62361, 1.83611)
+texture = ExtResource("1_abpg7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(584, 330)
+ignore_rotation = false
+
+[node name="Player" parent="Camera2D" instance=ExtResource("2_i4oek")]
+position = Vector2(-7, -5)
