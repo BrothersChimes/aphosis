@@ -39,4 +39,4 @@ offset_bottom = 485.0
 color = Color(0.0352941, 0.0431373, 0.0901961, 1)
 
 [node name="BasicWallTest" parent="." instance=ExtResource("4_c038w")]
-position = Vector2(1218, 1053)
+position = Vector2(680, 548)
