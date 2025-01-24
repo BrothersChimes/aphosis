@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ty0pib7djaw"]
+
+[ext_resource type="Texture2D" uid="uid://b7eoylyaj1h0m" path="res://Assets/Placeholder/black.png" id="1_b3mol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxbty"]
+size = Vector2(72, 292)
+
+[node name="BasicWallTest" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(36, -146)
+scale = Vector2(7.2, 29.2)
+texture = ExtResource("1_b3mol")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(36, -146)
+shape = SubResource("RectangleShape2D_lxbty")
