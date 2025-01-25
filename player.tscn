@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://44wdpnlupmm2"]
+[gd_scene load_steps=21 format=3 uid="uid://44wdpnlupmm2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3toru"]
 [ext_resource type="Texture2D" uid="uid://cu8qoswvpwk7n" path="res://Assets/Player/swim_slow.png" id="1_p1fdi"]
+[ext_resource type="PackedScene" uid="uid://cpdmv3ofwci2b" path="res://bubblegen.tscn" id="3_ppc1w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xewo8"]
 friction = 0.1
@@ -134,3 +135,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wm7sl")
 animation = &"swim_slow"
 autoplay = "swim_slow"
+
+[node name="Bubblegen" parent="." instance=ExtResource("3_ppc1w")]
+position = Vector2(1, -5)

@@ -67,7 +67,7 @@ offset_bottom = 815.0
 color = Color(0.880927, 0.979613, 0.982186, 1)
 
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(1914, 948)
+position = Vector2(2073, 4607)
 rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -78,10 +78,10 @@ ignore_rotation = false
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 z_index = -7
 z_as_relative = false
-offset_left = -1373.0
-offset_top = -977.0
-offset_right = 1578.0
-offset_bottom = 980.0
+offset_left = -2944.0
+offset_top = -2230.0
+offset_right = 3103.0
+offset_bottom = 2309.0
 color = Color(0.182122, 0.514698, 0.527075, 1)
 
 [node name="Flashlight" type="PointLight2D" parent="Player"]

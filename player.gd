@@ -33,8 +33,10 @@ var max_consumption = base_consumption * 3.0 * max_consumption_multiplier
 var consumption_multiplier = min_consumption_multiplier
 
 #depth system
-const max_depth_possible = 1080.0
+const max_depth_possible = 8500.0
 @onready var current_depth = position.y
+
+const camera_resize_start = 5000
 
 func get_consumption():
 	var depth_ratio = (current_depth / max_depth_possible)
@@ -68,13 +70,29 @@ func _process(delta: float) -> void:
 	apply_depth()
 	consumption = get_consumption()
 	suck_oxy(delta)
+	sprint_bubblers()
+	camera_with_depth()
+
+
+func sprint_bubblers(): 
 	if Input.is_action_just_pressed('sprint'):
 		$Bubblegen/ManyParticles.emitting = true
 		$Bubblegen/FewParticles.emitting = false
-
 	elif Input.is_action_just_released('sprint'):
 		$Bubblegen/ManyParticles.emitting = false
 		$Bubblegen/FewParticles.emitting = true
+
+@onready var camera_node = $Camera2D
+
+func camera_with_depth(): 
+	if position.y > camera_resize_start: 
+		var scaling_factor = 1.0 + clampf(position.y - camera_resize_start, 0.0, 3000.0) / 1000  
+		camera_node.zoom.x = 1.0 / scaling_factor
+		camera_node.zoom.y = 1.0 / scaling_factor
+	else: 
+		camera_node.zoom.x = 1
+		camera_node.zoom.y = 1	
+	
 
 func _physics_process(delta: float) -> void:
 
