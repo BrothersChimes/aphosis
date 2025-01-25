@@ -25,7 +25,7 @@ scale = Vector2(3.70313, 4.18125)
 texture = ExtResource("3_3py2l")
 
 [node name="Player" parent="." instance=ExtResource("2_i4oek")]
-position = Vector2(577, 325)
+position = Vector2(26, 4)
 rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

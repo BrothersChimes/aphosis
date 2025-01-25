@@ -6,6 +6,10 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xewo8"]
 friction = 0.1
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekehc"]
+radius = 6.31319
+height = 40.0221
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqu1j"]
 atlas = ExtResource("1_p1fdi")
 region = Rect2(0, 0, 32, 16)
@@ -112,15 +116,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekehc"]
-radius = 6.31319
-height = 40.0221
-
 [node name="Player" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_xewo8")
 gravity_scale = 0.0
 angular_damp = 2.0
 script = ExtResource("1_3toru")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.313667, 12.2922)
+shape = SubResource("CapsuleShape2D_ekehc")
 
 [node name="DiverSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -130,7 +134,3 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wm7sl")
 animation = &"swim_slow"
 autoplay = "swim_slow"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.313667, 12.2922)
-shape = SubResource("CapsuleShape2D_ekehc")

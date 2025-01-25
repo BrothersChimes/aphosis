@@ -5,16 +5,13 @@ extends Node2D
 
 var o2 = 1000.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$HUD/GuageO2.set_all_values(o2, 0.0, player.max_oxy)
 	$HUD/GuageConsumption.set_all_values(o2, 0.0, player.max_consumption)
-	pass # Replace with function body.
+	$HUD/GuageDepth.set_all_values(player.get_depth(), 0.0, player.max_depth_possible)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$HUD/GuageO2.set_value(player.get_oxy())
-	$HUD/GuageConsumption.set_value(player.consumption)
-	pass
-	#$Camera2D.rotation += delta / 5
+	$HUD/GuageConsumption.set_value(player.get_consumption())
+	$HUD/GuageDepth.set_value(player.get_depth())

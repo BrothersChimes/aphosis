@@ -23,31 +23,49 @@ var is_sprinting = false
 
 
 #Oxygen System
-const max_consumption = 10
 const max_oxy = 1000
 var oxy = max_oxy
-var base_consumption = 0.1
+var base_consumption = 0.0003
 var consumption = base_consumption
-var consumption_multiplier =  0.01
+var min_consumption_multiplier = 1.0
+var max_consumption_multiplier = 4.0
+var max_consumption = base_consumption * 3.0 * max_consumption_multiplier
+var consumption_multiplier = min_consumption_multiplier
+
+#depth system
+const max_depth_possible = 1080.0
+@onready var current_depth = position.y
 
 func get_consumption():
+	var depth_ratio = (current_depth / max_depth_possible)
+	consumption_multiplier = max_consumption_multiplier * depth_ratio
+	print(consumption_multiplier)
+	if consumption_multiplier < min_consumption_multiplier:
+		consumption_multiplier = min_consumption_multiplier
+	
 	var new_consumption = base_consumption
-	print('consump')
 	if is_moving:
-		print('move')
-		new_consumption += 1
+		new_consumption += base_consumption
 		if is_sprinting:
-			print('sprint')
-			new_consumption += 1
-	return new_consumption
+			new_consumption += base_consumption
+	return new_consumption * consumption_multiplier
 
 func get_oxy():
 	return oxy
 
+func get_depth():
+	return current_depth
+
 func suck_oxy(delta):
 	oxy -= oxy * consumption * delta * consumption_multiplier
 
+func apply_depth():
+	current_depth = position.y
+	pass
+	#current_depth = position.y
+
 func _process(delta: float) -> void:
+	apply_depth()
 	consumption = get_consumption()
 	suck_oxy(delta)
 
