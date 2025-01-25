@@ -50,6 +50,13 @@ func suck_oxy(delta):
 func _process(delta: float) -> void:
 	consumption = get_consumption()
 	suck_oxy(delta)
+	if Input.is_action_just_pressed('sprint'):
+		$Bubblegen/ManyParticles.emitting = true
+		$Bubblegen/FewParticles.emitting = false
+
+	elif Input.is_action_just_released('sprint'):
+		$Bubblegen/ManyParticles.emitting = false
+		$Bubblegen/FewParticles.emitting = true
 
 func _physics_process(delta: float) -> void:
 
@@ -73,6 +80,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		var rotation_speed_ratio = abs(current_angular_velocity) / max_rotation_speed
 		effective_rotation_speed = lerp(rotation_speed, 0, rotation_speed_ratio)
+
 
 	if Input.is_action_pressed('right_button'):
 		apply_torque(effective_rotation_speed * delta)

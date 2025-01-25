@@ -1,11 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://44wdpnlupmm2"]
+[gd_scene load_steps=19 format=3 uid="uid://44wdpnlupmm2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3toru"]
 [ext_resource type="Texture2D" uid="uid://cu8qoswvpwk7n" path="res://Assets/Player/swim_slow.png" id="1_p1fdi"]
-[ext_resource type="PackedScene" uid="uid://cpdmv3ofwci2b" path="res://bubblegen.tscn" id="3_jhkc3"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xewo8"]
-friction = 0.1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqu1j"]
 atlas = ExtResource("1_p1fdi")
@@ -117,26 +113,21 @@ animations = [{
 radius = 6.31319
 height = 40.0221
 
-[node name="Player" type="RigidBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_xewo8")
-gravity_scale = 0.0
-angular_damp = 2.0
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -3)
 script = ExtResource("1_3toru")
 
 [node name="DiverSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-0.686333, 18.2922)
-rotation = -1.39626
+position = Vector2(1.90735e-06, 11)
+rotation = -1.5708
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wm7sl")
 animation = &"swim_slow"
 autoplay = "swim_slow"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.313667, 12.2922)
+position = Vector2(1.90735e-06, 5)
+rotation = -0.174533
+scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_ekehc")
-
-[node name="Bubblegen" parent="." instance=ExtResource("3_jhkc3")]
-position = Vector2(1, -6)
-
-[editable path="Bubblegen"]
