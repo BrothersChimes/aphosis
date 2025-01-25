@@ -27,6 +27,7 @@ func set_barotrauma_level_to(level):
 	barotrauma_level = clamp(level, MIN_BAROTRAUMA_LEVEL, MAX_BAROTRAUMA_LEVEL)
 
 func alternate_modulate(delta):
+	print('Baro: ', barotrauma_level)
 	var speed = delta * barotrauma_level
 	if is_barotraumatic:
 		if modulate_up:
@@ -42,12 +43,12 @@ func alternate_modulate(delta):
 				if modulation < 0.00:
 					modulation = 0.00
 					modulate_up = true
-					if barotrauma_level <= 2:
-						$Subtitle.text = "[center]DECOMPRESS D[/center]"
-					elif barotrauma_level <= 5:
+					if barotrauma_level >= 5:
 						$Subtitle.text = "[center]DEATH IMMENENT[/center]"
-					else:
+					elif barotrauma_level >= 3:
 						$Subtitle.text = "[center]DIVE NOW[/center]"
+					else:
+						$Subtitle.text = "[center]DECOMPRESS D[/center]"
 		modulate = Color(1.0, 1.0, 1.0, modulation)
 	else:
 		modulation -= speed / 2

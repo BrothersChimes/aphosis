@@ -114,9 +114,11 @@ func apply_pressure_stacks(delta):
 	print(int(pressure_diff))
 	if pressure_diff > 1000:
 		is_dead = true
+		print('dead')
 	if pressure_diff > 900:
+		print('over 900')
 		set_barotrauma_level(5)
-	if pressure_diff > 800:
+	elif pressure_diff > 800:
 		set_barotrauma_level(4)
 	elif pressure_diff > 700:
 		set_barotrauma_level(3)
