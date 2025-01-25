@@ -28,11 +28,9 @@ z_as_relative = false
 [node name="ManyParticles" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_rdv3m")
 emitting = false
-amount = 100
-lifetime = 15.0
+amount = 200
+lifetime = 20.0
 speed_scale = 2.0
-randomness = 0.9
-lifetime_randomness = 0.1
 emission_shape = 1
 emission_sphere_radius = 7.0
 gravity = Vector2(0, -20)
@@ -44,13 +42,10 @@ color = Color(0.882353, 0.980392, 0.980392, 1)
 
 [node name="FewParticles" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_rdv3m")
+emitting = false
 amount = 40
-lifetime = 40.0
-preprocess = 3.0
+lifetime = 20.0
 speed_scale = 2.0
-explosiveness = 0.8
-randomness = 0.3
-lifetime_randomness = 0.7
 emission_shape = 1
 emission_sphere_radius = 5.0
 gravity = Vector2(0, -20)

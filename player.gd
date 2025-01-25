@@ -38,10 +38,12 @@ const max_depth_possible = 8500.0
 
 const camera_resize_start = 5000
 
+var breath_timer = 3.0
+var breathe_out = true
+
 func get_consumption():
 	var depth_ratio = (current_depth / max_depth_possible)
 	consumption_multiplier = max_consumption_multiplier * depth_ratio
-	print(consumption_multiplier)
 	if consumption_multiplier < min_consumption_multiplier:
 		consumption_multiplier = min_consumption_multiplier
 	
@@ -72,18 +74,32 @@ func _process(delta: float) -> void:
 	apply_depth()
 	consumption = get_consumption()
 	suck_oxy(delta)
-	sprint_bubblers()
+	sprint_bubblers(delta)
 	camera_with_depth()
 
 
-func sprint_bubblers(): 
-	if Input.is_action_just_pressed('sprint'):
-		$Bubblegen/ManyParticles.emitting = true
-		$Bubblegen/FewParticles.emitting = false
-	elif Input.is_action_just_released('sprint'):
-		$Bubblegen/ManyParticles.emitting = false
-		$Bubblegen/FewParticles.emitting = true
+func sprint_bubblers(delta): 
+	if Input.is_action_pressed('sprint'):
+		breath_timer -= 1.5*delta
+	else: 
+		breath_timer -= delta
+		
+	if breath_timer <= 0:
+		if breathe_out:
+			print("breathe out")
+			if Input.is_action_pressed('sprint'):
+				$Bubblegen/ManyParticles.emitting = true
+			else: 
+				$Bubblegen/FewParticles.emitting = true
+		else: 
+			print("breathe in")
+			$Bubblegen/ManyParticles.emitting = false
+			$Bubblegen/FewParticles.emitting = false
 
+		
+		breathe_out = !breathe_out
+		breath_timer = 3.0
+	
 @onready var camera_node = $Camera2D
 
 func camera_with_depth(): 
