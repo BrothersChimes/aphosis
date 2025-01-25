@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+
+# Movement
 const rotation_speed = 9000
 const max_rotation_speed = 5.0
 const max_speed = 500.0
@@ -14,6 +16,40 @@ const sprint_max_speed = 500.0
 const sprint_thrust = 60000
 
 var current_angular_velocity: float = 0.0  # Custom angular velocity
+
+# Trackers
+var is_moving = false
+var is_sprinting = false
+
+
+#Oxygen System
+const max_consumption = 10
+const max_oxy = 1000
+var oxy = max_oxy
+var base_consumption = 0.1
+var consumption = base_consumption
+var consumption_multiplier =  0.01
+
+func get_consumption():
+	var new_consumption = base_consumption
+	print('consump')
+	if is_moving:
+		print('move')
+		new_consumption += 1
+		if is_sprinting:
+			print('sprint')
+			new_consumption += 1
+	return new_consumption
+
+func get_oxy():
+	return oxy
+
+func suck_oxy(delta):
+	oxy -= oxy * consumption * delta * consumption_multiplier
+
+func _process(delta: float) -> void:
+	consumption = get_consumption()
+	suck_oxy(delta)
 
 func _physics_process(delta: float) -> void:
 
@@ -41,19 +77,25 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed('right_button'):
 		apply_torque(effective_rotation_speed * delta)
 		apply_central_force(right_direction * 10000 * delta)
+		is_moving = true
 	elif Input.is_action_pressed('left_button'):
 		apply_torque(-effective_rotation_speed * delta)
 		apply_central_force(left_direction * 10000 * delta)
+		is_moving = true
+	else: is_moving = false
 		
 
 	if (Input.is_action_pressed('up_button')):
+		is_moving = true
 		var applied_thrust
 		if Input.is_action_pressed('sprint'):
 			var speed_ratio = current_velocity.length() / sprint_max_speed
 			applied_thrust = lerp(sprint_thrust, 0, speed_ratio)  # Decrease thrust as speed approaches max_speed
+			is_sprinting = true
 		else:
 			var speed_ratio = current_velocity.length() / max_speed
 			applied_thrust = lerp(thrust, 0, speed_ratio)  # Decrease thrust as speed approaches max_speed
+			is_sprinting = false
 		apply_central_force(transform.y * -applied_thrust * delta)
 	
 	# Apply forward and sideways friction

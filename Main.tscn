@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfrgbs2tvoog2"]
+[gd_scene load_steps=9 format=3 uid="uid://dfrgbs2tvoog2"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_6yyh5"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="1_abpg7"]
 [ext_resource type="PackedScene" uid="uid://44wdpnlupmm2" path="res://player.tscn" id="2_i4oek"]
 [ext_resource type="Texture2D" uid="uid://cksygwn6fwtcn" path="res://Assets/Placeholder/background2.png" id="3_3py2l"]
 [ext_resource type="PackedScene" uid="uid://c3ty0pib7djaw" path="res://basic_wall_test.tscn" id="4_c038w"]
+[ext_resource type="PackedScene" uid="uid://up0wwtum6gq5" path="res://Guage.tscn" id="6_tm1n7"]
+[ext_resource type="Texture2D" uid="uid://dh3c4387ysqpl" path="res://Assets/HUD/GuageConsumption.png" id="7_weeb3"]
+[ext_resource type="Texture2D" uid="uid://co7kogmfd2hm4" path="res://Assets/HUD/GuageDepth.png" id="8_8ymir"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_6yyh5")
@@ -40,3 +43,24 @@ color = Color(0.0352941, 0.0431373, 0.0901961, 1)
 
 [node name="BasicWallTest" parent="." instance=ExtResource("4_c038w")]
 position = Vector2(680, 548)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="GuageO2" parent="HUD" instance=ExtResource("6_tm1n7")]
+position = Vector2(160, 160)
+
+[node name="GuageConsumption" parent="HUD" instance=ExtResource("6_tm1n7")]
+position = Vector2(160, 320)
+
+[node name="Face" parent="HUD/GuageConsumption" index="0"]
+texture = ExtResource("7_weeb3")
+
+[node name="GuageDepth" parent="HUD" instance=ExtResource("6_tm1n7")]
+position = Vector2(160, 480)
+
+[node name="Face" parent="HUD/GuageDepth" index="0"]
+texture = ExtResource("8_8ymir")
+
+[editable path="HUD/GuageO2"]
+[editable path="HUD/GuageConsumption"]
+[editable path="HUD/GuageDepth"]
