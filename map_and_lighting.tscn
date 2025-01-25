@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://41t2wvwq1noq"]
+[gd_scene load_steps=22 format=3 uid="uid://41t2wvwq1noq"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_mt1lk"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="2_y1pcv"]
@@ -11,9 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dprwfow1bnenx" path="res://Assets/map/map4.png" id="10_asysh"]
 [ext_resource type="Texture2D" uid="uid://ccjaenoxdgca5" path="res://map/light/sunlight.png" id="10_jp1ly"]
 [ext_resource type="Texture2D" uid="uid://brhb8crj2darx" path="res://map/light/halfcircle.png" id="11_1lwtq"]
-[ext_resource type="PackedScene" path="res://Guage.tscn" id="12_yk0sx"]
-[ext_resource type="Texture2D" uid="uid://dh3c4387ysqpl" path="res://Assets/HUD/GuageConsumption.png" id="13_6qaad"]
-[ext_resource type="Texture2D" uid="uid://co7kogmfd2hm4" path="res://Assets/HUD/GuageDepth.png" id="14_4r8n7"]
+[ext_resource type="PackedScene" uid="uid://c6586uvb04uv8" path="res://HUD.tscn" id="12_v2bcd"]
 
 [sub_resource type="Gradient" id="Gradient_0hivh"]
 offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
@@ -238,23 +236,6 @@ position = Vector2(-820.1, -1291.04)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_nt3bl")
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="GuageO2" parent="HUD" instance=ExtResource("12_yk0sx")]
-position = Vector2(160, 160)
-
-[node name="GuageConsumption" parent="HUD" instance=ExtResource("12_yk0sx")]
-position = Vector2(160, 320)
-
-[node name="Face" parent="HUD/GuageConsumption" index="0"]
-texture = ExtResource("13_6qaad")
-
-[node name="GuageDepth" parent="HUD" instance=ExtResource("12_yk0sx")]
-position = Vector2(160, 480)
-
-[node name="Face" parent="HUD/GuageDepth" index="0"]
-texture = ExtResource("14_4r8n7")
-
 [node name="Skywall" parent="." instance=ExtResource("8_khcaw")]
 visible = false
 position = Vector2(340.459, -4.13379)
@@ -263,7 +244,6 @@ scale = Vector2(100, 1)
 [node name="Sprite2D" parent="Skywall/StaticBody2D" index="1"]
 visible = false
 
-[editable path="HUD/GuageO2"]
-[editable path="HUD/GuageConsumption"]
-[editable path="HUD/GuageDepth"]
+[node name="HUD" parent="." instance=ExtResource("12_v2bcd")]
+
 [editable path="Skywall"]
