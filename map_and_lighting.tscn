@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://tkjid5qyxg2k"]
+[gd_scene load_steps=24 format=3 uid="uid://41t2wvwq1noq"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_mt1lk"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="2_y1pcv"]
@@ -11,9 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://dprwfow1bnenx" path="res://Assets/map/map4.png" id="10_asysh"]
 [ext_resource type="Texture2D" uid="uid://ccjaenoxdgca5" path="res://map/light/sunlight.png" id="10_jp1ly"]
 [ext_resource type="Texture2D" uid="uid://brhb8crj2darx" path="res://map/light/halfcircle.png" id="11_1lwtq"]
-[ext_resource type="PackedScene" path="res://Guage.tscn" id="12_yk0sx"]
+[ext_resource type="PackedScene" uid="uid://up0wwtum6gq5" path="res://Guage.tscn" id="12_yk0sx"]
 [ext_resource type="Texture2D" uid="uid://dh3c4387ysqpl" path="res://Assets/HUD/GuageConsumption.png" id="13_6qaad"]
 [ext_resource type="Texture2D" uid="uid://co7kogmfd2hm4" path="res://Assets/HUD/GuageDepth.png" id="14_4r8n7"]
+
+[sub_resource type="Gradient" id="Gradient_0hivh"]
+offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
+colors = PackedColorArray(0, 0.5305, 0.937416, 1, 0, 0.781121, 0.907287, 1, 0, 0.388235, 1, 1, 0.797434, 0.887279, 0.922381, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_62yqm"]
+gradient = SubResource("Gradient_0hivh")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bx18s"]
 cull_mode = 2
@@ -59,15 +66,25 @@ scale = Vector2(3.70313, 4.18125)
 texture = ExtResource("3_om1iy")
 
 [node name="Sky" type="ColorRect" parent="."]
+visible = false
 z_index = -6
-offset_left = -1224.0
-offset_top = -3052.0
-offset_right = 10845.0
-offset_bottom = 815.0
+offset_left = -1257.54
+offset_top = -3867.13
+offset_right = 10811.5
+offset_bottom = -0.133789
 color = Color(0.880927, 0.979613, 0.982186, 1)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -6
+offset_left = -1018.0
+offset_top = 3.0
+offset_right = -76.0
+offset_bottom = 9770.0
+rotation = -1.5708
+texture = SubResource("GradientTexture2D_62yqm")
+
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(2073, 4607)
+position = Vector2(1898.46, 51.8662)
 rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -108,20 +125,21 @@ offset = Vector2(-16, 0)
 texture_scale = 3.0
 
 [node name="BasicWallTest" parent="." instance=ExtResource("8_khcaw")]
-position = Vector2(46, 388)
+position = Vector2(12.459, -427.134)
 
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -4
 texture_filter = 1
-position = Vector2(5084.44, 5041.1)
+position = Vector2(5050.9, 4225.97)
 scale = Vector2(4, 4)
 texture = ExtResource("10_asysh")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-33.541, -815.134)
 color = Color(0, 0, 0, 1)
 
 [node name="Sun" type="PointLight2D" parent="."]
-position = Vector2(3303, -3164)
+position = Vector2(3269.46, -3979.13)
 rotation = 1.57269
 energy = 2.0
 shadow_enabled = true
@@ -131,7 +149,7 @@ offset = Vector2(512, 0)
 texture_scale = 30.0
 
 [node name="cavelight" type="PointLight2D" parent="."]
-position = Vector2(5316.32, 3797.66)
+position = Vector2(5282.78, 2982.53)
 rotation = 6.26988
 scale = Vector2(2, 2)
 energy = 0.2
@@ -140,7 +158,7 @@ texture = ExtResource("11_1lwtq")
 texture_scale = 20.0
 
 [node name="cavelight2" type="PointLight2D" parent="."]
-position = Vector2(3495, 2584)
+position = Vector2(3461.46, 1768.87)
 rotation = 11.7619
 scale = Vector2(2, 2)
 energy = 0.2
@@ -149,7 +167,7 @@ texture = ExtResource("11_1lwtq")
 texture_scale = 20.0
 
 [node name="cavelight3" type="PointLight2D" parent="."]
-position = Vector2(4173, 2581)
+position = Vector2(4139.46, 1765.87)
 rotation = 13.1862
 scale = Vector2(2, 2)
 energy = 0.2
@@ -158,7 +176,7 @@ texture = ExtResource("11_1lwtq")
 texture_scale = 20.0
 
 [node name="cavelight4" type="PointLight2D" parent="."]
-position = Vector2(4771, 2981)
+position = Vector2(4737.46, 2165.87)
 rotation = 12.3927
 scale = Vector2(2, 2)
 energy = 0.01
@@ -167,7 +185,7 @@ texture = ExtResource("11_1lwtq")
 texture_scale = 40.0
 
 [node name="cavelight5" type="PointLight2D" parent="."]
-position = Vector2(3241, 3095)
+position = Vector2(3207.46, 2279.87)
 rotation = 13.0497
 scale = Vector2(2, 2)
 energy = 0.01
@@ -186,37 +204,37 @@ scale = Vector2(3.24846, 3.24846)
 color = Color(0.469297, 0.883439, 0.898749, 1)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(-796, -503)
+position = Vector2(-829.541, -1318.13)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_bx18s")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
-position = Vector2(-797, -496)
+position = Vector2(-830.541, -1311.13)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_nhydc")
 
 [node name="Sunoccluder1" type="LightOccluder2D" parent="."]
-position = Vector2(-797, -496)
+position = Vector2(-830.541, -1311.13)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_y0s64")
 
 [node name="Sunoccluder2" type="LightOccluder2D" parent="."]
-position = Vector2(-797, -496)
+position = Vector2(-830.541, -1311.13)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_val4m")
 
 [node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
-position = Vector2(-788.559, -476.904)
+position = Vector2(-822.1, -1292.04)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_a702x")
 
 [node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
-position = Vector2(-788.559, -476.904)
+position = Vector2(-822.1, -1292.04)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_2mdus")
 
 [node name="LightOccluder2D5" type="LightOccluder2D" parent="."]
-position = Vector2(-786.559, -475.904)
+position = Vector2(-820.1, -1291.04)
 scale = Vector2(2, 2)
 occluder = SubResource("OccluderPolygon2D_nt3bl")
 
@@ -237,6 +255,15 @@ position = Vector2(160, 480)
 [node name="Face" parent="HUD/GuageDepth" index="0"]
 texture = ExtResource("14_4r8n7")
 
+[node name="Skywall" parent="." instance=ExtResource("8_khcaw")]
+visible = false
+position = Vector2(340.459, -4.13379)
+scale = Vector2(100, 1)
+
+[node name="Sprite2D" parent="Skywall/StaticBody2D" index="1"]
+visible = false
+
 [editable path="HUD/GuageO2"]
 [editable path="HUD/GuageConsumption"]
 [editable path="HUD/GuageDepth"]
+[editable path="Skywall"]

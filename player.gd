@@ -23,8 +23,8 @@ var is_sprinting = false
 
 
 #Oxygen System
-const max_oxy = 1000
-var oxy = max_oxy
+var max_oxy = 1000
+var oxy = max_oxy / 2
 var base_consumption = 0.0003
 var consumption = base_consumption
 var min_consumption_multiplier = 1.0
@@ -59,6 +59,8 @@ func get_depth():
 	return current_depth
 
 func suck_oxy(delta):
+	if position.y <= 5:
+		oxy = max_oxy
 	oxy -= oxy * consumption * delta * consumption_multiplier
 
 func apply_depth():
