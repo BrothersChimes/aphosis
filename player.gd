@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 
+@onready var is_dead = false
 # Movement
 const rotation_speed = 9000
 const max_rotation_speed = 5.0
@@ -36,6 +37,14 @@ var consumption_multiplier = min_consumption_multiplier
 const max_depth_possible = 8500.0
 @onready var current_depth = position.y
 
+#barotrauma system
+@onready var is_decompressing = false
+@onready var current_pressure = current_depth
+@onready var current_barotrauma = 1
+@onready var is_barotraumatic = 0
+const PRESSURE_STACK_RAMP_UP = 0.3
+const PRESSURE_STACK_RAMP_DOWN = 0.05
+
 const camera_resize_start = 5000
 
 var breath_timer = 3.0
@@ -48,6 +57,12 @@ func get_consumption():
 		consumption_multiplier = min_consumption_multiplier
 	
 	var new_consumption = base_consumption
+	if is_decompressing:
+		new_consumption += base_consumption
+		new_consumption += base_consumption
+		new_consumption += base_consumption
+		new_consumption += base_consumption
+		new_consumption += base_consumption
 	if is_moving:
 		new_consumption += base_consumption
 		if is_sprinting:
@@ -70,8 +85,51 @@ func apply_depth():
 	pass
 	#current_depth = position.y
 
+func get_pressure():
+	return current_pressure
+
+func set_barotrauma_level(level):
+	current_barotrauma = clamp (level, 1, 5)
+	is_barotraumatic = true
+
+func get_barotrauma_level():
+	return current_barotrauma
+
+func set_no_barotrauma():
+	is_barotraumatic = false
+
+func apply_pressure_stacks(delta):
+	if Input.is_action_pressed('decompress'):
+		is_decompressing = true
+	else:
+		is_decompressing = false
+	if current_pressure > current_depth:
+		if is_decompressing:
+			current_pressure = lerp(current_pressure, get_depth(), delta * PRESSURE_STACK_RAMP_DOWN * 10)
+		else:
+			current_pressure = lerp(current_pressure, get_depth(), delta * PRESSURE_STACK_RAMP_DOWN)
+	else:
+		current_pressure = lerp(current_pressure, get_depth(), delta * PRESSURE_STACK_RAMP_UP)
+	var pressure_diff = current_pressure - current_depth
+	print(int(pressure_diff))
+	if pressure_diff > 1000:
+		is_dead = true
+	if pressure_diff > 900:
+		set_barotrauma_level(5)
+	if pressure_diff > 800:
+		set_barotrauma_level(4)
+	elif pressure_diff > 700:
+		set_barotrauma_level(3)
+	elif pressure_diff > 600:
+		set_barotrauma_level(2)
+	elif pressure_diff > 500:
+		set_barotrauma_level(1)
+	else:
+		set_no_barotrauma()
+
 func _process(delta: float) -> void:
 	apply_depth()
+	apply_pressure_stacks(delta)
 	consumption = get_consumption()
 	suck_oxy(delta)
 	sprint_bubblers(delta)
@@ -86,13 +144,11 @@ func sprint_bubblers(delta):
 		
 	if breath_timer <= 0:
 		if breathe_out:
-			print("breathe out")
 			if Input.is_action_pressed('sprint'):
 				$Bubblegen/ManyParticles.emitting = true
 			else: 
 				$Bubblegen/FewParticles.emitting = true
 		else: 
-			print("breathe in")
 			$Bubblegen/ManyParticles.emitting = false
 			$Bubblegen/FewParticles.emitting = false
 
@@ -125,6 +181,12 @@ func _physics_process(delta: float) -> void:
 
 	var sideways_speed_ratio = sideways_velocity.length() / max_speed  # Calculate sideways speed ratio
 
+	if is_decompressing:
+		var forward_friction_force = min(forward_friction * forward_velocity.length_squared(), max_friction) * -forward_velocity.normalized()
+		var sideways_friction_force = sideways_friction * sideways_velocity.length_squared() * -sideways_velocity.normalized()
+		apply_central_force((forward_friction_force + sideways_friction_force) * delta)
+		return
+		
 
 	# Calculate effective rotation speed based on current rotation speed
 	var effective_rotation_speed

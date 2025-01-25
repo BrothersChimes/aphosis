@@ -35,22 +35,36 @@ position = Vector2(160, 640)
 script = ExtResource("4_yuvct")
 
 [node name="Heart" type="Sprite2D" parent="BarotraumaIcon"]
+position = Vector2(0, 25)
 scale = Vector2(4, 4)
 texture = ExtResource("5_a3se4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BarotraumaIcon"]
-offset_left = -138.0
-offset_top = 20.0
-offset_right = 149.0
-offset_bottom = 155.0
+[node name="Title" type="RichTextLabel" parent="BarotraumaIcon"]
+offset_left = -160.0
+offset_top = 46.0
+offset_right = 163.0
+offset_bottom = 181.0
 theme = SubResource("Theme_wjuam")
 theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
 theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
 theme_override_constants/outline_size = 10
 bbcode_enabled = true
-text = "[center] 
-BAROTRAUMA DETECTED
-[/center]"
+text = "[center] BAROTRAUMA  DETECTED[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle" type="RichTextLabel" parent="BarotraumaIcon"]
+offset_left = -159.0
+offset_top = -80.0
+offset_right = 160.0
+offset_bottom = 55.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]DECOMPRESS D[/center]"
 fit_content = true
 scroll_active = false
 

@@ -12,6 +12,13 @@ func _ready():
 
 
 func _process(delta):
+	if player.is_dead:
+		$HUD/BarotraumaIcon/Subtitle.text = "[center]DEAD[/center]"
+		return
 	$HUD/GuageO2.set_value(player.get_oxy())
 	$HUD/GuageConsumption.set_value(player.get_consumption())
 	$HUD/GuageDepth.set_value(player.get_depth())
+	if player.is_barotraumatic:
+		$HUD/BarotraumaIcon.set_barotrauma_level_to(player.get_barotrauma_level())
+	else:
+		$HUD/BarotraumaIcon.set_no_barotrauma()
