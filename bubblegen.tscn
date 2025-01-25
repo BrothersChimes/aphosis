@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpdmv3ofwci2b"]
+
+[sub_resource type="Shader" id="Shader_ebn34"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdv3m"]
+shader = SubResource("Shader_ebn34")
+
+[sub_resource type="Curve" id="Curve_fux6c"]
+min_value = -1.0
+_data = [Vector2(0, -0.0160502), 0.0, 0.0, 0, 0, Vector2(0.0548204, 1), 0.0, 0.0, 0, 0, Vector2(0.111531, -0.0160502), 0.0, 0.0, 0, 0, Vector2(0.162571, -0.923238), 0.0, 0.0, 0, 0, Vector2(0.330813, 1), 0.0, 0.0, 0, 0, Vector2(0.500945, -0.968597), 0.0, 0.0, 0, 0, Vector2(0.635161, 1), 0.0, 0.0, 0, 0, Vector2(0.748582, -0.941382), 0.0, 0.0, 0, 0, Vector2(0.850662, 0.981856), 0.0, 0.0, 0, 0, Vector2(0.926276, -0.968597), 0.0, 0.0, 0, 0, Vector2(0.99811, 0.0111655), 0.0, 0.0, 0, 0, Vector2(1, -0.00697827), 0.0, 0.0, 0, 0]
+point_count = 12
+
+[sub_resource type="Curve" id="Curve_monlw"]
+min_value = 1.0
+max_value = 15.0
+_data = [Vector2(0, 0.986392), 0.0, 9.39719, 0, 0, Vector2(0.151229, 3.75401), 7.59846, 7.59846, 0, 0, Vector2(0.257089, 4.85625), -18.3963, -18.3963, 0, 0, Vector2(0.374291, 6.44836), -16.4127, -16.4127, 0, 0, Vector2(0.523629, 7.50977), -24.6807, -24.6807, 0, 0, Vector2(0.62949, 8.57118), -35.0929, -35.0929, 0, 0, Vector2(0.725898, 9.83671), -38.3306, -38.3306, 0, 0, Vector2(0.83932, 12.2694), -35.3612, -35.3612, 0, 0, Vector2(0.992439, 14.6825), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[node name="Bubblegen" type="Node2D"]
+z_index = -5
+z_as_relative = false
+
+[node name="ManyParticles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_rdv3m")
+emitting = false
+amount = 100
+lifetime = 15.0
+speed_scale = 2.0
+randomness = 0.9
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 7.0
+gravity = Vector2(0, -20)
+tangential_accel_min = -2.0
+tangential_accel_max = 2.0
+tangential_accel_curve = SubResource("Curve_fux6c")
+scale_amount_curve = SubResource("Curve_monlw")
+color = Color(0.882353, 0.980392, 0.980392, 1)
+
+[node name="FewParticles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_rdv3m")
+amount = 40
+lifetime = 40.0
+preprocess = 3.0
+speed_scale = 2.0
+explosiveness = 0.8
+randomness = 0.3
+lifetime_randomness = 0.7
+emission_shape = 1
+emission_sphere_radius = 5.0
+gravity = Vector2(0, -20)
+tangential_accel_min = -2.0
+tangential_accel_max = 2.0
+tangential_accel_curve = SubResource("Curve_fux6c")
+scale_amount_curve = SubResource("Curve_monlw")
+color = Color(0.882353, 0.980392, 0.980392, 1)

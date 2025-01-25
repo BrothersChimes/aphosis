@@ -1,0 +1,242 @@
+[gd_scene load_steps=22 format=3 uid="uid://tkjid5qyxg2k"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_mt1lk"]
+[ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="2_y1pcv"]
+[ext_resource type="Texture2D" uid="uid://cksygwn6fwtcn" path="res://Assets/Placeholder/background2.png" id="3_om1iy"]
+[ext_resource type="PackedScene" uid="uid://44wdpnlupmm2" path="res://player.tscn" id="4_k1fx0"]
+[ext_resource type="Texture2D" uid="uid://cdrgw42duq0uo" path="res://map/light/torchlight1b.png" id="5_1sptt"]
+[ext_resource type="Texture2D" uid="uid://c4yvpwc6b4h0r" path="res://map/light/torchlight2b.png" id="6_yb5ft"]
+[ext_resource type="Texture2D" uid="uid://thphrp2jdgic" path="res://map/light/whitecircle.png" id="7_gk3yb"]
+[ext_resource type="PackedScene" uid="uid://c3ty0pib7djaw" path="res://basic_wall_test.tscn" id="8_khcaw"]
+[ext_resource type="Texture2D" uid="uid://dprwfow1bnenx" path="res://Assets/map/map4.png" id="10_asysh"]
+[ext_resource type="Texture2D" uid="uid://ccjaenoxdgca5" path="res://map/light/sunlight.png" id="10_jp1ly"]
+[ext_resource type="Texture2D" uid="uid://brhb8crj2darx" path="res://map/light/halfcircle.png" id="11_1lwtq"]
+[ext_resource type="PackedScene" path="res://Guage.tscn" id="12_yk0sx"]
+[ext_resource type="Texture2D" uid="uid://dh3c4387ysqpl" path="res://Assets/HUD/GuageConsumption.png" id="13_6qaad"]
+[ext_resource type="Texture2D" uid="uid://co7kogmfd2hm4" path="res://Assets/HUD/GuageDepth.png" id="14_4r8n7"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bx18s"]
+cull_mode = 2
+polygon = PackedVector2Array(440, 309, 523, 441, 637, 521, 813, 566, 917, 597, 1098, 607, 1137, 614, 1167, 663, 1235, 946, 1327, 1064, 1560, 1129, 1966, 1123, 2127, 1091, 2146, 1156, 2168.28, 1262.95, 2156.78, 1317.95, 2137, 1338, 2131, 1429, 2149.5, 1506.5, 2127.5, 1507, 2137, 1541.5, 2109.5, 1502.5, 2111.5, 1486, 2084.5, 1489, 2068, 1475.5, 2053.5, 1488.5, 2016.5, 1476.5, 1977.5, 1499.5, 1977, 1544, 1956.5, 1574.5, 1930, 1632, 1929, 1706.5, 1916.78, 1737.45, 1892.28, 1730.95, 1886.28, 1784.95, 1844, 1744, 1784, 1719.5, 1760.5, 1717, 1758, 1763, 1663, 1871, 1590.5, 1840.5, 1489, 1893, 1492, 2066, 1362, 2006, 1337, 1904, 1158, 1726, 1113, 1670, 939, 1675, 883, 1594, 738, 1603, 611, 1717, 448, 1744)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nhydc"]
+cull_mode = 2
+polygon = PackedVector2Array(2313.28, 1130.95, 2400, 1053, 3129, 1020, 4102, 515, 4257, 388, 4524, 322, 5424, 275, 5426, 1176, 5280, 1177, 4240.78, 878.452, 3762.78, 914.952, 3503.78, 1085.95, 3617.28, 1435.45, 3649.78, 1735.45, 3687.78, 1894.95, 3724, 1964, 3691, 1991.5, 3649, 2022, 3597.28, 2037.95, 3520.28, 2041.45, 3337.78, 1989.45, 3370.78, 1878.45, 3305.78, 1853.45, 3264.28, 1845.45, 3201.28, 1816.95, 3186.78, 1727.45, 3077.78, 1653.45, 3030, 1765, 3050.78, 1633.45, 2892, 1631, 2859.78, 1688.95, 2888.28, 1536.45, 2762.28, 1501.45, 2658.28, 1618.45, 2709.28, 1463.45, 2558, 1447, 2490.28, 1533.45, 2481, 1423, 2399.5, 1382, 2365.5, 1389.5, 2350.5, 1362, 2322, 1295, 2307, 1176.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y0s64"]
+polygon = PackedVector2Array(2450, 1182.5, 2693, 1101, 3198, 1085, 3669, 870, 4147.5, 622.5, 4305, 420.5, 4708, 343, 5429.5, 363.5, 5401.5, 1135.5, 4017, 835, 3516.5, 980.5, 3508.5, 1219.5, 2329, 1386.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_val4m"]
+polygon = PackedVector2Array(479.5, 707, 1102.5, 726, 1272.5, 1166, 2090.5, 1177, 2176.5, 1280.5, 466, 1363.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a702x"]
+cull_mode = 2
+polygon = PackedVector2Array(1657, 2149, 1752, 2074, 1809, 2001, 1927, 1940, 2008, 1931, 2112, 1905, 2178, 1879, 2312, 1879, 2428, 1928, 2860, 2046, 2907, 2078, 2951, 2114, 3021, 2375, 2959, 2626, 2731, 2670, 2598, 2578, 2481, 2421, 2473, 2157, 2618, 2228, 2766, 2270, 2931, 2262, 2920, 2118, 2871, 2079, 2784, 2054, 2682, 2023, 2494, 1981, 2350, 1942, 2125, 1952, 2004, 1965, 1906, 1986, 1812, 2051, 1745, 2256, 1801, 2425, 1837, 2595, 1934, 2644, 2015, 2582, 2099, 2154, 2165, 2119, 2203, 2171, 2240, 2317, 2223, 2414, 2192, 2487, 2159, 2587, 2085, 2677, 2015, 2656, 1935, 2691, 1775, 2572, 1744, 2442, 1671, 2361)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2mdus"]
+cull_mode = 1
+polygon = PackedVector2Array(3226.28, 2121.45, 3265.78, 2052.45, 3322.78, 2038.45, 3612.78, 2063.45, 3806.78, 2097.45, 3804, 2491, 3711, 2605, 3392, 2580, 3215, 2424, 3201, 2296)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nt3bl"]
+closed = false
+cull_mode = 2
+polygon = PackedVector2Array(3966, 2312, 3952, 2035, 3882, 1859, 3903, 1650, 3917, 1465, 3828, 1224, 4033, 1231, 3958, 1713, 4050, 1918, 4011, 2181)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_mt1lk")
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(583.5, 328.5)
+scale = Vector2(1.62361, 1.83611)
+texture = ExtResource("2_y1pcv")
+
+[node name="Background2" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(921, 591)
+scale = Vector2(3.70313, 4.18125)
+texture = ExtResource("3_om1iy")
+
+[node name="Sky" type="ColorRect" parent="."]
+z_index = -6
+offset_left = -1224.0
+offset_top = -3052.0
+offset_right = 10845.0
+offset_bottom = 815.0
+color = Color(0.880927, 0.979613, 0.982186, 1)
+
+[node name="Player" parent="." instance=ExtResource("4_k1fx0")]
+position = Vector2(2073, 4607)
+rotation = 1.5708
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(7, 5)
+rotation = -1.5708
+ignore_rotation = false
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
+z_index = -7
+z_as_relative = false
+offset_left = -2944.0
+offset_top = -2230.0
+offset_right = 3103.0
+offset_bottom = 2309.0
+color = Color(0.182122, 0.514698, 0.527075, 1)
+
+[node name="Flashlight" type="PointLight2D" parent="Player"]
+rotation = -1.57079
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("5_1sptt")
+offset = Vector2(480, 0)
+
+[node name="Flashlight2" type="PointLight2D" parent="Player"]
+position = Vector2(-41.9998, 60.0002)
+rotation = -1.57079
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("6_yb5ft")
+offset = Vector2(480, 0)
+
+[node name="Playerlight" type="PointLight2D" parent="Player"]
+rotation = -1.57079
+energy = 0.05
+shadow_enabled = true
+texture = ExtResource("7_gk3yb")
+offset = Vector2(-16, 0)
+texture_scale = 3.0
+
+[node name="BasicWallTest" parent="." instance=ExtResource("8_khcaw")]
+position = Vector2(46, 388)
+
+[node name="Map" type="Sprite2D" parent="."]
+z_index = -4
+texture_filter = 1
+position = Vector2(5084.44, 5041.1)
+scale = Vector2(4, 4)
+texture = ExtResource("10_asysh")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Sun" type="PointLight2D" parent="."]
+position = Vector2(3303, -3164)
+rotation = 1.57269
+energy = 2.0
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("10_jp1ly")
+offset = Vector2(512, 0)
+texture_scale = 30.0
+
+[node name="cavelight" type="PointLight2D" parent="."]
+position = Vector2(5316.32, 3797.66)
+rotation = 6.26988
+scale = Vector2(2, 2)
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("11_1lwtq")
+texture_scale = 20.0
+
+[node name="cavelight2" type="PointLight2D" parent="."]
+position = Vector2(3495, 2584)
+rotation = 11.7619
+scale = Vector2(2, 2)
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("11_1lwtq")
+texture_scale = 20.0
+
+[node name="cavelight3" type="PointLight2D" parent="."]
+position = Vector2(4173, 2581)
+rotation = 13.1862
+scale = Vector2(2, 2)
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("11_1lwtq")
+texture_scale = 20.0
+
+[node name="cavelight4" type="PointLight2D" parent="."]
+position = Vector2(4771, 2981)
+rotation = 12.3927
+scale = Vector2(2, 2)
+energy = 0.01
+shadow_enabled = true
+texture = ExtResource("11_1lwtq")
+texture_scale = 40.0
+
+[node name="cavelight5" type="PointLight2D" parent="."]
+position = Vector2(3241, 3095)
+rotation = 13.0497
+scale = Vector2(2, 2)
+energy = 0.01
+shadow_enabled = true
+texture = ExtResource("11_1lwtq")
+texture_scale = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+offset_left = 110.0
+offset_top = -257.0
+offset_right = 3061.0
+offset_bottom = 1700.0
+scale = Vector2(3.24846, 3.24846)
+color = Color(0.469297, 0.883439, 0.898749, 1)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-796, -503)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_bx18s")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(-797, -496)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_nhydc")
+
+[node name="Sunoccluder1" type="LightOccluder2D" parent="."]
+position = Vector2(-797, -496)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_y0s64")
+
+[node name="Sunoccluder2" type="LightOccluder2D" parent="."]
+position = Vector2(-797, -496)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_val4m")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+position = Vector2(-788.559, -476.904)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_a702x")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+position = Vector2(-788.559, -476.904)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_2mdus")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="."]
+position = Vector2(-786.559, -475.904)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_nt3bl")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="GuageO2" parent="HUD" instance=ExtResource("12_yk0sx")]
+position = Vector2(160, 160)
+
+[node name="GuageConsumption" parent="HUD" instance=ExtResource("12_yk0sx")]
+position = Vector2(160, 320)
+
+[node name="Face" parent="HUD/GuageConsumption" index="0"]
+texture = ExtResource("13_6qaad")
+
+[node name="GuageDepth" parent="HUD" instance=ExtResource("12_yk0sx")]
+position = Vector2(160, 480)
+
+[node name="Face" parent="HUD/GuageDepth" index="0"]
+texture = ExtResource("14_4r8n7")
+
+[editable path="HUD/GuageO2"]
+[editable path="HUD/GuageConsumption"]
+[editable path="HUD/GuageDepth"]
