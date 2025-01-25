@@ -21,6 +21,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Calculate the forward and sideways components of the velocity
 	var forward_direction = transform.y.normalized()
+	var right_direction = transform.x.normalized()
+	var left_direction = -right_direction
 	var forward_velocity = forward_direction * forward_direction.dot(current_velocity)
 	var sideways_velocity = current_velocity - forward_velocity
 
@@ -38,8 +40,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed('right_button'):
 		apply_torque(effective_rotation_speed * delta)
+		apply_central_force(right_direction * 10000 * delta)
 	elif Input.is_action_pressed('left_button'):
 		apply_torque(-effective_rotation_speed * delta)
+		apply_central_force(left_direction * 10000 * delta)
 		
 
 	if (Input.is_action_pressed('up_button')):
