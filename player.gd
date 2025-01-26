@@ -16,6 +16,9 @@ const sprint_max_rotation_speed = 5.0
 const sprint_max_speed = 500.0
 const sprint_thrust = 60000
 
+# Relics
+var has_skull = false
+
 var current_angular_velocity: float = 0.0  # Custom angular velocity
 
 # Trackers
@@ -168,7 +171,7 @@ func apply_pressure_stacks(delta):
 	
 	var scaling_factor = 1.0 + 7.0*pow(current_mod, 2.5)  
 	scaling_factor = clampf(scaling_factor, 1.0, 4.0)
-	print(scaling_factor)
+	# print(scaling_factor)
 	camera_node.zoom.x = 1.0 * scaling_factor
 	camera_node.zoom.y = 1.0 * scaling_factor
 	

@@ -23,3 +23,13 @@ func _process(delta):
 		$HUD/BarotraumaIcon.set_barotrauma_level_to(player.get_barotrauma_level())
 	else:
 		$HUD/BarotraumaIcon.set_no_barotrauma()
+
+func _on_relic_relic_entered(relic):
+	print("got ", relic.relic_type)
+	if relic.relic_type == "skull":
+		print('player is getting skull')
+		player.has_skull = true
+		player.oxy = player.max_oxy
+
+func _on_relic_relic_exited(relic):
+	pass
