@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+var has_numbskull = false
 
 @onready var is_dead = false
 # Movement
@@ -126,20 +127,23 @@ func apply_pressure_stacks(delta):
 	
 		
 	pressure_diff = current_pressure - current_depth
+	var npd = 0
+	if has_numbskull:
+		npd = 400
 	
-	if pressure_diff > 1000:
+	if pressure_diff > 1000 + npd:
 		is_dead = true
 		# print('dead')
-	elif pressure_diff > 900:
+	elif pressure_diff > 900 + npd:
 		# print('over 900')
 		set_barotrauma_level(5)
-	elif pressure_diff > 800:
+	elif pressure_diff > 800 + npd:
 		set_barotrauma_level(4)
-	elif pressure_diff > 700:
+	elif pressure_diff > 700 + npd:
 		set_barotrauma_level(3)
-	elif pressure_diff > 600:
+	elif pressure_diff > 600 + npd:
 		set_barotrauma_level(2)
-	elif pressure_diff > 500:
+	elif pressure_diff > 500 + npd:
 		set_barotrauma_level(1)
 	else:
 		set_no_barotrauma()

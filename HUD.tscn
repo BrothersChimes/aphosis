@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6586uvb04uv8"]
+[gd_scene load_steps=9 format=3 uid="uid://c6586uvb04uv8"]
 
 [ext_resource type="PackedScene" uid="uid://up0wwtum6gq5" path="res://Guage.tscn" id="1_j2c0p"]
 [ext_resource type="Texture2D" uid="uid://dh3c4387ysqpl" path="res://Assets/HUD/GuageConsumption.png" id="2_52tko"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://barotrauma_icon.gd" id="4_yuvct"]
 [ext_resource type="Texture2D" uid="uid://bjngyrhbbgceb" path="res://Assets/HUD/Barotrauma.png" id="5_a3se4"]
 [ext_resource type="FontFile" uid="uid://danqdd8inop1u" path="res://Fonts/editundo.ttf" id="6_vbvn6"]
+[ext_resource type="Script" path="res://tutorial_text.gd" id="7_ktek0"]
 
 [sub_resource type="Theme" id="Theme_wjuam"]
 default_font = ExtResource("6_vbvn6")
@@ -127,6 +128,168 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]DECOMPRESS D[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="TutorialText" type="Node2D" parent="."]
+script = ExtResource("7_ktek0")
+
+[node name="Subtitle" type="RichTextLabel" parent="TutorialText"]
+offset_left = 200.0
+offset_top = 137.0
+offset_right = 519.0
+offset_bottom = 272.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Oxygen Guage[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle2" type="RichTextLabel" parent="TutorialText"]
+offset_left = 200.0
+offset_top = 289.0
+offset_right = 519.0
+offset_bottom = 424.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Oxygen Usage[/center]
+[center]( exertion )[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle3" type="RichTextLabel" parent="TutorialText"]
+offset_left = 200.0
+offset_top = 472.0
+offset_right = 519.0
+offset_bottom = 607.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]DEPTH[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle4" type="RichTextLabel" parent="TutorialText"]
+offset_left = 200.0
+offset_top = 598.0
+offset_right = 519.0
+offset_bottom = 742.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]rising too quickly causes barotrauma
+ ( the bends )[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Heart" type="Sprite2D" parent="TutorialText"]
+position = Vector2(160, 663)
+scale = Vector2(4, 4)
+texture = ExtResource("5_a3se4")
+
+[node name="Title1" type="RichTextLabel" parent="TutorialText"]
+offset_left = 348.0
+offset_top = 309.0
+offset_right = 1517.0
+offset_bottom = 444.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "[center]Move faster with SHIFT[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Title3" type="RichTextLabel" parent="TutorialText"]
+offset_left = 348.0
+offset_top = 405.0
+offset_right = 1517.0
+offset_bottom = 540.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "[center]Surface to refill oxygen[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle1" type="RichTextLabel" parent="TutorialText"]
+offset_left = 171.0
+offset_top = 629.0
+offset_right = 1705.0
+offset_bottom = 764.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]To avoid barotrauma,
+dive deeper
+decompress with d
+and rise slower
+[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Title2" type="RichTextLabel" parent="TutorialText"]
+offset_left = 355.0
+offset_top = 148.0
+offset_right = 1524.0
+offset_bottom = 283.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Move with ARROW KEYS[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Title4" type="RichTextLabel" parent="TutorialText"]
+offset_left = 355.0
+offset_top = 976.0
+offset_right = 1524.0
+offset_bottom = 1111.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]BETTER SAFE THAN SORRY![/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle5" type="RichTextLabel" parent="TutorialText"]
+offset_left = 171.0
+offset_top = 939.0
+offset_right = 1705.0
+offset_bottom = 1074.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Have fun, explore, and most importantly[/center]"
 fit_content = true
 scroll_active = false
 
