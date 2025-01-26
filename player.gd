@@ -16,8 +16,6 @@ const sprint_max_rotation_speed = 5.0
 const sprint_max_speed = 500.0
 const sprint_thrust = 60000
 
-# Relics
-var has_skull = false
 
 var current_angular_velocity: float = 0.0  # Custom angular velocity
 
@@ -27,8 +25,8 @@ var is_sprinting = false
 
 
 #Oxygen System
-var max_oxy = 1000
-var oxy = max_oxy / 2
+var max_oxy = 500
+var oxy = max_oxy
 var base_consumption = 0.0003
 var consumption = base_consumption
 var min_consumption_multiplier = 1.0
@@ -163,17 +161,18 @@ func apply_pressure_stacks(delta):
 	var mod = max(hpmodulation, baromod)
 	current_mod = lerpf(current_mod, mod, 0.01)
 	
-	redhaze.modulate = Color(1,1,1, current_mod)
+	redhaze.modulate = Color(1,1,1, current_mod * 0.6)
 	
 	
 	
 	var haze_scale = clampf(8.0 * health/max_health, 2.0, 8.0) 
 	
-	var scaling_factor = 1.0 + 7.0*pow(current_mod, 2.5)  
-	scaling_factor = clampf(scaling_factor, 1.0, 4.0)
+	var base_zoom = 1.2
+	var scaling_factor = base_zoom + 7.0*pow(current_mod, 2.5)  
+	scaling_factor = clampf(scaling_factor, base_zoom, 4.0)
 	# print(scaling_factor)
-	camera_node.zoom.x = 1.0 * scaling_factor
-	camera_node.zoom.y = 1.0 * scaling_factor
+	camera_node.zoom.x = base_zoom * scaling_factor
+	camera_node.zoom.y = base_zoom * scaling_factor
 	
 	#if get_barotrauma_level() == 5: 
 		#haze_scale = 2.0

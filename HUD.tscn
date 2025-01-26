@@ -14,28 +14,58 @@ Label/colors/font_color = Color(1, 1, 1, 1)
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="Relic1" type="Node2D" parent="."]
-position = Vector2(160, 640)
+[node name="RelicText" type="Node2D" parent="."]
+position = Vector2(939, 370)
 
-[node name="Title" type="RichTextLabel" parent="Relic1"]
-offset_left = -160.0
-offset_top = 46.0
-offset_right = 163.0
-offset_bottom = 181.0
+[node name="Title1" type="RichTextLabel" parent="RelicText"]
+offset_left = -583.0
+offset_top = -178.0
+offset_right = 586.0
+offset_bottom = -43.0
 theme = SubResource("Theme_wjuam")
 theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
 theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
 theme_override_constants/outline_size = 10
 bbcode_enabled = true
-text = "[center] BAROTRAUMA  DETECTED[/center]"
+text = "[center]BAROTRAUMA  DETECTED[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="Subtitle" type="RichTextLabel" parent="Relic1"]
-offset_left = -159.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = 55.0
+[node name="Subtitle1" type="RichTextLabel" parent="RelicText"]
+offset_left = -767.0
+offset_top = 260.0
+offset_right = 767.0
+offset_bottom = 395.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]DECOMPRESS D[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Title2" type="RichTextLabel" parent="RelicText"]
+offset_left = -583.0
+offset_top = -48.0
+offset_right = 586.0
+offset_bottom = 87.0
+theme = SubResource("Theme_wjuam")
+theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
+theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]BAROTRAUMA  DETECTED[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle2" type="RichTextLabel" parent="RelicText"]
+offset_left = -767.0
+offset_top = 400.0
+offset_right = 767.0
+offset_bottom = 535.0
 theme = SubResource("Theme_wjuam")
 theme_override_colors/default_color = Color(0.354025, 0.0633433, 0.0309186, 1)
 theme_override_colors/font_outline_color = Color(0.0562048, 0.567923, 0.809089, 1)
