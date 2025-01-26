@@ -12,6 +12,7 @@ func _ready():
 
 
 func _process(delta):
+	# print("playerdead? " + str(player.is_dead) + "   y: " +  str(int(player.position.y)) )
 	if player.is_dead:
 		$HUD/BarotraumaIcon/Subtitle.text = "[center]DEAD[/center]"
 		return

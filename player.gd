@@ -50,6 +50,10 @@ const camera_resize_start = 5000
 var breath_timer = 3.0
 var breathe_out = true
 
+@onready var redhaze = $Redhaze
+const max_health = 100.0
+var health = max_health
+
 func get_consumption():
 	var depth_ratio = (current_depth / max_depth_possible)
 	consumption_multiplier = max_consumption_multiplier * depth_ratio
@@ -98,11 +102,16 @@ func get_barotrauma_level():
 func set_no_barotrauma():
 	is_barotraumatic = false
 
+var pressure_diff = 0
+var current_mod = 0.0
+
 func apply_pressure_stacks(delta):
 	if Input.is_action_pressed('decompress'):
 		is_decompressing = true
 	else:
 		is_decompressing = false
+		
+	# current pressure approaches current depth
 	if current_pressure > current_depth:
 		if is_decompressing:
 			current_pressure = lerp(current_pressure, get_depth(), delta * PRESSURE_STACK_RAMP_DOWN * 10)
@@ -110,13 +119,15 @@ func apply_pressure_stacks(delta):
 			current_pressure = lerp(current_pressure, get_depth(), delta * PRESSURE_STACK_RAMP_DOWN)
 	else:
 		current_pressure = lerp(current_pressure, get_depth(), delta * PRESSURE_STACK_RAMP_UP)
-	var pressure_diff = current_pressure - current_depth
-	print(int(pressure_diff))
+	
+		
+	pressure_diff = current_pressure - current_depth
+	
 	if pressure_diff > 1000:
 		is_dead = true
-		print('dead')
-	if pressure_diff > 900:
-		print('over 900')
+		# print('dead')
+	elif pressure_diff > 900:
+		# print('over 900')
 		set_barotrauma_level(5)
 	elif pressure_diff > 800:
 		set_barotrauma_level(4)
@@ -128,14 +139,57 @@ func apply_pressure_stacks(delta):
 		set_barotrauma_level(1)
 	else:
 		set_no_barotrauma()
+	
+	# print('isdead: ' + str(is_dead))
+
+	if is_barotraumatic:
+		# print("BT: " + str(int(get_barotrauma_level())) + ",     depth: " + str(int(get_depth())) + ',    press: ' + str(int(current_pressure)) + ',     pdiff: ' + str(int(pressure_diff)))
+		var barosquared = (get_barotrauma_level() - 1) * (get_barotrauma_level() - 1)
+		health -= barosquared * delta
+	if !is_barotraumatic: 
+		# print('nbt: depth: ' + str(int(get_depth())) + ',    press: ' + str(int(current_pressure)) + ',     pdiff: ' + str(int(pressure_diff)))
+
+		health = clampf(health + 2*delta, 0, max_health)
+	# print("health: " + str(health))
+		
+	var hpmodulation = 1.0 -  health / max_health
+	var baromod = (get_barotrauma_level() - 1.0) / 4.0
+	var mod = max(hpmodulation, baromod)
+	current_mod = lerpf(current_mod, mod, 0.01)
+	
+	redhaze.modulate = Color(1,1,1, current_mod)
+	
+	
+	
+	var haze_scale = clampf(8.0 * health/max_health, 2.0, 8.0) 
+	
+	var scaling_factor = 1.0 + 7.0*pow(current_mod, 2.5)  
+	camera_node.zoom.x = 1.0 * scaling_factor
+	camera_node.zoom.y = 1.0 * scaling_factor
+	
+	#if get_barotrauma_level() == 5: 
+		#haze_scale = 2.0
+
+	redhaze.scale.x = haze_scale
+	redhaze.scale.y = haze_scale
+
+	
+	
+	if health <= 0: 
+		is_dead = true
+		# print('dead')
+
 
 func _process(delta: float) -> void:
+	# print("POSITION: " + str(int(position.y)))
+	$LabelNode/Label.text = "pdiff: " + str(int(pressure_diff)) + " hp: " + str(int(health))
+		
 	apply_depth()
 	apply_pressure_stacks(delta)
 	consumption = get_consumption()
 	suck_oxy(delta)
 	sprint_bubblers(delta)
-	camera_with_depth()
+	#camera_with_depth()
 
 
 func sprint_bubblers(delta): 

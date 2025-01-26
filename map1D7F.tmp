@@ -83,7 +83,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(3691, 2287)
+position = Vector2(5213, 4267)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(7, 5)
@@ -124,18 +124,12 @@ offset = Vector2(-16, 0)
 texture_scale = 3.0
 
 [node name="Redhaze" type="Sprite2D" parent="Player"]
-visible = false
 texture_filter = 1
 position = Vector2(5, 11)
 scale = Vector2(8, 8)
 texture = ExtResource("8_bjhrr")
 
-[node name="LabelNode" type="Node2D" parent="Player"]
-position = Vector2(31, 59)
-rotation = -1.5708
-
-[node name="Label" type="Label" parent="Player/LabelNode"]
-visible = false
+[node name="Label" type="Label" parent="Player"]
 offset_left = 27.0
 offset_top = 1.0
 offset_right = 67.0

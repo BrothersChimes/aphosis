@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 	pass
 
 func set_no_barotrauma():
+	barotrauma_level = MIN_BAROTRAUMA_LEVEL
 	is_barotraumatic = false
 
 func set_barotrauma_level_to(level):
@@ -27,7 +28,10 @@ func set_barotrauma_level_to(level):
 	barotrauma_level = clamp(level, MIN_BAROTRAUMA_LEVEL, MAX_BAROTRAUMA_LEVEL)
 
 func alternate_modulate(delta):
-	print('Baro: ', barotrauma_level)
+	# if is_barotraumatic : 
+		# print('Baro: ', barotrauma_level)
+	# else:
+		# print('binbt: ', barotrauma_level)
 	var speed = delta * barotrauma_level
 	if is_barotraumatic:
 		if modulate_up:
