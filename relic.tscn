@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://batj6suhgdcoy"]
+[gd_scene load_steps=5 format=3 uid="uid://batj6suhgdcoy"]
 
+[ext_resource type="Script" path="res://relic.gd" id="1_6kmxb"]
 [ext_resource type="Texture2D" uid="uid://dwyevldqmc6te" path="res://Assets/artifacts/skull2.png" id="1_mn110"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_imea8"]
@@ -9,6 +10,7 @@ radius = 16.0312
 radius = 28.0179
 
 [node name="Relic" type="Node2D"]
+script = ExtResource("1_6kmxb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
