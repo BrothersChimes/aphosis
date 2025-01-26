@@ -200,9 +200,14 @@ func _process(delta: float) -> void:
 	$LabelNode/Label.text = "pdiff: " + str(int(pressure_diff)) + " hp: " + str(int(health))
 
 	if is_dead && hasnt_died_yet:
+		$Bubblegen/ManyParticles.emitting = true
+		$Bubblegen/FewParticles.emitting = true
 		hasnt_died_yet = false
 		$DiverSprite.animation = "death"
 		$DiverSprite.set_frame_and_progress(0, 0.0)
+	if is_dead && not hasnt_died_yet:
+		$Bubblegen/ManyParticles.emitting = false
+		$Bubblegen/FewParticles.emitting = false
 		
 	apply_depth()
 	apply_pressure_stacks(delta)
@@ -285,10 +290,18 @@ func _physics_process(delta: float) -> void:
 		apply_torque(effective_rotation_speed * delta)
 		apply_central_force(right_direction * 10000 * delta)
 		is_moving = true
+		if Input.is_action_pressed('sprint') and not (Input.is_action_pressed('right_button') or  Input.is_action_pressed('right_button')):
+			is_sprinting = true
+			apply_torque(effective_rotation_speed * delta)
+			apply_torque(effective_rotation_speed * delta)
 	elif Input.is_action_pressed('up_button'):
 		apply_torque(-effective_rotation_speed * delta)
 		apply_central_force(left_direction * 10000 * delta)
 		is_moving = true
+		if Input.is_action_pressed('sprint') and not (Input.is_action_pressed('right_button') or  Input.is_action_pressed('right_button')):
+			is_sprinting = true
+			apply_torque(-effective_rotation_speed * delta)
+			apply_torque(-effective_rotation_speed * delta)
 	else: is_moving = false
 		
 
@@ -303,13 +316,6 @@ func _physics_process(delta: float) -> void:
 			var speed_ratio = current_velocity.length() / max_speed
 			applied_thrust = lerp(thrust, 0, speed_ratio)  # Decrease thrust as speed approaches max_speed
 			is_sprinting = false
-		apply_central_force(transform.y * -applied_thrust * delta)
-	if (Input.is_action_pressed('right_button')):
-		is_moving = true
-		var applied_thrust
-		var speed_ratio = current_velocity.length() / max_speed
-		applied_thrust = lerp(thrust, 0, speed_ratio)  # Decrease thrust as speed approaches max_speed
-		is_sprinting = false
 		apply_central_force(transform.y * -applied_thrust * delta)
 	if (Input.is_action_pressed('left_button')):
 		is_moving = true

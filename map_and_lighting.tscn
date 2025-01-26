@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://41t2wvwq1noq"]
+[gd_scene load_steps=24 format=3 uid="uid://41t2wvwq1noq"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_mt1lk"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="2_y1pcv"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ccjaenoxdgca5" path="res://map/light/sunlight.png" id="10_jp1ly"]
 [ext_resource type="Texture2D" uid="uid://brhb8crj2darx" path="res://map/light/halfcircle.png" id="11_1lwtq"]
 [ext_resource type="PackedScene" uid="uid://c6586uvb04uv8" path="res://HUD.tscn" id="12_v2bcd"]
-[ext_resource type="FontFile" uid="uid://danqdd8inop1u" path="res://Fonts/editundo.ttf" id="14_qhwth"]
+[ext_resource type="PackedScene" uid="uid://batj6suhgdcoy" path="res://relic.tscn" id="14_m111h"]
 
 [sub_resource type="Gradient" id="Gradient_0hivh"]
 offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
@@ -48,10 +48,6 @@ polygon = PackedVector2Array(3226.28, 2121.45, 3265.78, 2052.45, 3322.78, 2038.4
 closed = false
 cull_mode = 2
 polygon = PackedVector2Array(3966, 2312, 3952, 2035, 3882, 1859, 3903, 1650, 3917, 1465, 3828, 1224, 4033, 1231, 3958, 1713, 4050, 1918, 4011, 2181)
-
-[sub_resource type="Theme" id="Theme_cr5vm"]
-default_font = ExtResource("14_qhwth")
-default_font_size = 48
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mt1lk")
@@ -88,8 +84,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(2068, 152)
-rotation = 1.5708
+position = Vector2(3678, 1010)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(7, 5)
@@ -271,28 +266,7 @@ visible = false
 
 [node name="HUD" parent="." instance=ExtResource("12_v2bcd")]
 
-[node name="Start Instructions" type="RichTextLabel" parent="."]
-offset_left = 1853.0
-offset_top = -375.0
-offset_right = 3193.0
-offset_bottom = 132.0
-theme = SubResource("Theme_cr5vm")
-theme_override_colors/default_color = Color(0.685829, 0.989782, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.281843, 0.922539, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_offset_x = -2
-theme_override_constants/shadow_outline_size = 2
-text = "Arrow keys to move, space to sprint
-
-Guages for oxygen, exertion, depth
-
-Surfacing too quickly will cause barotrauma: 
- * Dive deeper
- * hold D to decompress
-
-Surface again to refill oxygen
-
-Search for hidden treasure, but stay alive"
+[node name="Relic" parent="." instance=ExtResource("14_m111h")]
+position = Vector2(3803, 931)
 
 [editable path="Skywall"]
