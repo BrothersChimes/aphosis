@@ -3,7 +3,7 @@ extends Node2D
 @onready var player = $Player
 @onready var HUD = $HUD
 
-var o2 = 1000.0
+var o2 = 0.0
 
 func _ready():
 	$HUD/GuageO2.set_all_values(o2, 0.0, player.max_oxy)
