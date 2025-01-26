@@ -132,7 +132,6 @@ fit_content = true
 scroll_active = false
 
 [node name="TutorialText" type="Node2D" parent="."]
-visible = false
 script = ExtResource("7_ktek0")
 
 [node name="Subtitle" type="RichTextLabel" parent="TutorialText"]
