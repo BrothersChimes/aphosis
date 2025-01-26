@@ -1,9 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://44wdpnlupmm2"]
+[gd_scene load_steps=33 format=3 uid="uid://44wdpnlupmm2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3toru"]
 [ext_resource type="Texture2D" uid="uid://cu8qoswvpwk7n" path="res://Assets/Player/swim_slow.png" id="1_p1fdi"]
 [ext_resource type="Texture2D" uid="uid://btxvskpxi2m7y" path="res://Assets/Player/death.png" id="2_5rwvu"]
 [ext_resource type="PackedScene" uid="uid://cpdmv3ofwci2b" path="res://bubblegen.tscn" id="3_ppc1w"]
+[ext_resource type="AudioStream" uid="uid://x47fvgcywxex" path="res://Assets/Echoes-of-Time-v2(chosic.com).mp3" id="5_k4dfm"]
+[ext_resource type="AudioStream" uid="uid://ckqfn8c3hk1ef" path="res://Assets/fx-shepard-tone-downer-big-block-engine-effect-237269.mp3" id="6_3qqqv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xewo8"]
 friction = 0.1
@@ -207,3 +209,9 @@ autoplay = "swim_slow"
 
 [node name="Bubblegen" parent="." instance=ExtResource("3_ppc1w")]
 position = Vector2(1, -5)
+
+[node name="BasicMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_k4dfm")
+
+[node name="DeepMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_3qqqv")
