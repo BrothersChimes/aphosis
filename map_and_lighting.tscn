@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://41t2wvwq1noq"]
+[gd_scene load_steps=17 format=3 uid="uid://41t2wvwq1noq"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_mt1lk"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="2_y1pcv"]
@@ -19,6 +19,13 @@ colors = PackedColorArray(0, 0.5305, 0.937416, 1, 0, 0.781121, 0.907287, 1, 0, 0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_62yqm"]
 gradient = SubResource("Gradient_0hivh")
+
+[sub_resource type="Gradient" id="Gradient_5aq7j"]
+offsets = PackedFloat32Array(0.122772, 0.413861, 0.645545, 0.748515)
+colors = PackedColorArray(2.88785e-07, 0.610989, 0.572037, 1, 1, 1, 1, 1, 0, 0.427451, 0.792157, 1, 0.212193, 0.21217, 7.21961e-08, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_baf8f"]
+gradient = SubResource("Gradient_5aq7j")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mt1lk")
@@ -50,12 +57,20 @@ z_index = -6
 offset_left = -1018.0
 offset_top = 3.0
 offset_right = -76.0
-offset_bottom = 9770.0
+offset_bottom = 10543.0
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+z_index = -6
+offset_left = 8997.0
+offset_right = 9630.0
+offset_bottom = 968.0
+rotation = -1.5708
+texture = SubResource("GradientTexture2D_baf8f")
+
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(3630, 761)
+position = Vector2(2505, 430)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(7, 5)
@@ -117,7 +132,6 @@ offset_bottom = 24.0
 position = Vector2(12.459, -427.134)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(-33.541, -815.134)
 color = Color(0, 0, 0, 1)
 
