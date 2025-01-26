@@ -72,5 +72,3 @@ func show_relic_text(title, effect, flavour_text):
 	$HUD/RelicText/Title2.visible = true
 	$HUD/RelicText/Subtitle2.text = "[center]" + '"' + str(flavour_text) + '"' + "[/center]"
 	$HUD/RelicText/Subtitle2.visible = true
-
-
