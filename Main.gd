@@ -50,21 +50,27 @@ func _process(delta):
 			modulation = 0
 		$HUD/RelicText.modulate = Color(1.0, 1.0, 1.0, modulation)
 
-var has_skull = false;
+var has_madskull = false;
+var has_numbskull = false;
 func _on_relic_entered(relic):
 	print("got ", relic.relic_type)
-	if relic.relic_type == "skull" and not has_skull:
-		has_skull = true
+	if relic.relic_type == "madskull" and not has_madskull:
+		has_madskull = true
 		print('player is getting skull')
-		show_relic_text("Ancient Skull of a Giant", "Doubles your max oxygen", "A skull so large and neutrally boyuant serves as an excellent diving bell.")
+		show_relic_text("RELIC FOUND", "Ancient Skull of a Giant", "Doubles your max oxygen", "A skull so large and neutrally boyuant serves as an excellent diving bell.")
 		player.max_oxy *= 2 
 		$HUD/GuageO2.set_all_values(player.get_oxy(), 0.0, player.max_oxy)
+	if relic.relic_type == "numbskull" and not has_numbskull:
+		has_numbskull = true
+		print('player is getting skull')
+		show_relic_text("RELIC FOUND", "Horrifically Deformed Giant Skull", "Reduces Barotrauma", "Nothing could break free from a skull so thick! Not even ideas.")
+		player.has_numbskull = true
 	relic.despawn()
 	is_showing_relic = true
 	time_until_modulate_down = 20
 
-func show_relic_text(title, effect, flavour_text):
-	$HUD/RelicText/Title1.text = "[center]RELIC UNLOCKED[/center]"
+func show_relic_text(relic_unlocked, title, effect, flavour_text):
+	$HUD/RelicText/Title1.text = "[center]" + str(relic_unlocked) + "[/center]"
 	$HUD/RelicText/Title1.visible = true
 	$HUD/RelicText/Subtitle1.text = "[center]" + str(effect) + "[/center]"
 	$HUD/RelicText/Subtitle1.visible = true
@@ -73,4 +79,9 @@ func show_relic_text(title, effect, flavour_text):
 	$HUD/RelicText/Subtitle2.text = "[center]" + '"' + str(flavour_text) + '"' + "[/center]"
 	$HUD/RelicText/Subtitle2.visible = true
 
+
+func _on_tutorial_bounds_entered(body):
+	print('tut bound entered')
+	if body.name == "Player":
+		$HUD/TutorialText.show_tutorial = false
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfrgbs2tvoog2"]
+[gd_scene load_steps=17 format=3 uid="uid://dfrgbs2tvoog2"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_6yyh5"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="1_abpg7"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c3jcr7dwovsds" path="res://Assets/redhazemask.png" id="8_wsi7p"]
 [ext_resource type="PackedScene" uid="uid://nsvjajtkaqe4" path="res://map.tscn" id="10_8pq5e"]
 [ext_resource type="PackedScene" uid="uid://batj6suhgdcoy" path="res://relic.tscn" id="12_owyi0"]
+[ext_resource type="Texture2D" uid="uid://i64lwc2asj58" path="res://Assets/artifacts/skully.png" id="13_u5gmu"]
 
 [sub_resource type="Gradient" id="Gradient_0hivh"]
 offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
@@ -19,6 +20,9 @@ colors = PackedColorArray(0, 0.5305, 0.937416, 1, 0, 0.781121, 0.907287, 1, 0, 0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_62yqm"]
 gradient = SubResource("Gradient_0hivh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2um0i"]
+size = Vector2(135.154, 887.016)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_6yyh5")
@@ -55,7 +59,8 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
 [node name="Player" parent="." instance=ExtResource("2_i4oek")]
-position = Vector2(3678, 1010)
+position = Vector2(1967, 43)
+rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(7, 5)
@@ -133,12 +138,34 @@ visible = false
 
 [node name="Relics" type="Node2D" parent="."]
 
-[node name="Skull" parent="Relics" instance=ExtResource("12_owyi0")]
-position = Vector2(3681, 948)
-relic_type = "skull"
+[node name="MadSkull" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(3746, 2407)
+relic_type = "madskull"
 
-[connection signal="relic_entered" from="Relics/Skull" to="." method="_on_relic_entered"]
-[connection signal="body_entered" from="Relics/Skull/Area2D" to="Relics/Skull" method="_on_area_2d_body_entered"]
+[node name="NumbSkull" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(1524, 3387)
+relic_type = "numbskull"
+
+[node name="Sprite2D" parent="Relics/NumbSkull" index="2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_u5gmu")
+
+[node name="Tutorial Bounds" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Tutorial Bounds"]
+position = Vector2(3346, 599)
+rotation = 0.306858
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Bounds/Area2D"]
+position = Vector2(-65.2078, -161.467)
+shape = SubResource("RectangleShape2D_2um0i")
+
+[connection signal="relic_entered" from="Relics/MadSkull" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/MadSkull/Area2D" to="Relics/MadSkull" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/NumbSkull" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/NumbSkull/Area2D" to="Relics/NumbSkull" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Tutorial Bounds/Area2D" to="." method="_on_tutorial_bounds_entered"]
 
 [editable path="Skywall"]
-[editable path="Relics/Skull"]
+[editable path="Relics/MadSkull"]
+[editable path="Relics/NumbSkull"]
