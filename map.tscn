@@ -38,7 +38,19 @@ position = Vector2(5050.9, 4225.97)
 scale = Vector2(4, 4)
 texture = ExtResource("1_2krri")
 
-[node name="Sun" type="PointLight2D" parent="."]
+[node name="PreviewBackground" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+offset_left = -1235.22
+offset_top = -1120.74
+offset_right = 1715.78
+offset_bottom = 836.257
+scale = Vector2(3.24846, 3.24846)
+color = Color(0.469297, 0.883439, 0.898749, 1)
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="Sun" type="PointLight2D" parent="Light"]
 position = Vector2(-445.36, -2051.27)
 rotation = 1.57269
 scale = Vector2(0.25, 0.25)
@@ -49,7 +61,7 @@ texture = ExtResource("2_onaay")
 offset = Vector2(512, 0)
 texture_scale = 30.0
 
-[node name="cavelight" type="PointLight2D" parent="."]
+[node name="cavelight" type="PointLight2D" parent="Light"]
 position = Vector2(57.97, -310.86)
 rotation = -0.0133055
 scale = Vector2(0.5, 0.5)
@@ -58,7 +70,7 @@ shadow_enabled = true
 texture = ExtResource("3_3xi81")
 texture_scale = 20.0
 
-[node name="cavelight2" type="PointLight2D" parent="."]
+[node name="cavelight2" type="PointLight2D" parent="Light"]
 position = Vector2(-397.36, -614.275)
 rotation = -0.804471
 scale = Vector2(0.5, 0.5)
@@ -67,7 +79,7 @@ shadow_enabled = true
 texture = ExtResource("3_3xi81")
 texture_scale = 20.0
 
-[node name="cavelight3" type="PointLight2D" parent="."]
+[node name="cavelight3" type="PointLight2D" parent="Light"]
 position = Vector2(-227.86, -615.025)
 rotation = 0.61983
 scale = Vector2(0.5, 0.5)
@@ -76,7 +88,7 @@ shadow_enabled = true
 texture = ExtResource("3_3xi81")
 texture_scale = 20.0
 
-[node name="cavelight4" type="PointLight2D" parent="."]
+[node name="cavelight4" type="PointLight2D" parent="Light"]
 position = Vector2(-78.36, -515.025)
 rotation = -0.17367
 scale = Vector2(0.5, 0.5)
@@ -85,7 +97,7 @@ shadow_enabled = true
 texture = ExtResource("3_3xi81")
 texture_scale = 40.0
 
-[node name="cavelight5" type="PointLight2D" parent="."]
+[node name="cavelight5" type="PointLight2D" parent="Light"]
 position = Vector2(-460.86, -486.525)
 rotation = 0.483329
 scale = Vector2(0.5, 0.5)
@@ -94,47 +106,46 @@ shadow_enabled = true
 texture = ExtResource("3_3xi81")
 texture_scale = 40.0
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-z_index = -1
-offset_left = -1235.22
-offset_top = -1120.74
-offset_right = 1715.78
-offset_bottom = 836.257
-scale = Vector2(3.24846, 3.24846)
-color = Color(0.469297, 0.883439, 0.898749, 1)
+[node name="Shadow" type="Node2D" parent="."]
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Shadow"]
 position = Vector2(-1470.11, -1386.03)
 scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_bx18s")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Shadow"]
 position = Vector2(-1470.36, -1384.28)
 scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_nhydc")
 
-[node name="Sunoccluder1" type="LightOccluder2D" parent="."]
+[node name="Sunoccluder1" type="LightOccluder2D" parent="Shadow"]
 position = Vector2(-1470.36, -1384.28)
 scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_y0s64")
 
-[node name="Sunoccluder2" type="LightOccluder2D" parent="."]
+[node name="Sunoccluder2" type="LightOccluder2D" parent="Shadow"]
 position = Vector2(-1470.36, -1384.28)
 scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_val4m")
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Shadow"]
 position = Vector2(-1468.25, -1379.5)
 scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_a702x")
 
-[node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Shadow"]
 position = Vector2(-1468.25, -1379.5)
 scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_2mdus")
 
-[node name="LightOccluder2D5" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="Shadow"]
 position = Vector2(-1467.75, -1379.25)
 scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_nt3bl")
+
+[node name="Collision" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision/StaticBody2D"]
+polygon = PackedVector2Array(-995.225, -1118.24, -889.725, -1108.49, -868.725, -1091.99, -819.975, -1003.49, -750.225, -948.743, -631.225, -894.993, -420.725, -853.743, -394.225, -834.743, -385.725, -806.993, -382.725, -770.243, -375.225, -751.243, -375.725, -719.993, -395.475, -709.743, -396.225, -654.993, -395.975, -630.743, -404.725, -626.243, -401.475, -616.243, -414.225, -641.493, -428.475, -639.743, -436.475, -648.243, -440.975, -642.243, -477.725, -641.743, -477.725, -617.743, -496.725, -591.743, -506.475, -550.243, -505.725, -531.743, -512.725, -514.993, -521.225, -516.993, -526.975, -495.493, -547.225, -512.993, -562.975, -512.493, -590.725, -532.243, -587.975, -505.993, -631.225, -450.993, -655.975, -451.493, -672.725, -465.493, -724.475, -442.243, -714.475, -338.243, -782.475, -363.743, -801.975, -383.993, -805.225, -410.743, -848.225, -458.993, -870.475, -473.493, -895.725, -517.243, -915.725, -526.743, -970.225, -526.493, -1021.47, -540.993, -1028.72, -573.243, -1088.22, -572.743, -1138.97, -542.993, -1162.97, -503.743, -1152.72, -500.743, -1153.22, -476.993, -1166.22, -454.243, -1190.22, -451.493, -1196.47, -429.743, -1186.22, -417.743, -1176.97, -376.243, -1191.22, -350.993, -1195.22, -328.993, -1205.72, -345.993, -1214.72, -320.993, -1209.47, -311.243, -1220.47, -305.493, -1216.47, -292.993, -1214.72, -276.493, -1246.72, -275.493, -1247.47, -1242.74, -1231.47, -1240.24, -1202.97, -1171.99)
