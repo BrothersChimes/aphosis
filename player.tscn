@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://44wdpnlupmm2"]
+[gd_scene load_steps=31 format=3 uid="uid://44wdpnlupmm2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3toru"]
 [ext_resource type="Texture2D" uid="uid://cu8qoswvpwk7n" path="res://Assets/Player/swim_slow.png" id="1_p1fdi"]
+[ext_resource type="Texture2D" uid="uid://btxvskpxi2m7y" path="res://Assets/Player/death.png" id="2_5rwvu"]
 [ext_resource type="PackedScene" uid="uid://cpdmv3ofwci2b" path="res://bubblegen.tscn" id="3_ppc1w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xewo8"]
@@ -10,6 +11,42 @@ friction = 0.1
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekehc"]
 radius = 6.31319
 height = 40.0221
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcthd"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjl6c"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cvru"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odys1"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6asr"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4hoh"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0vjb"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n0db"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4wo7"]
+atlas = ExtResource("2_5rwvu")
+region = Rect2(0, 32, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqu1j"]
 atlas = ExtResource("1_p1fdi")
@@ -69,6 +106,38 @@ region = Rect2(416, 0, 32, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wm7sl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcthd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjl6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cvru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odys1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6asr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4hoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0vjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n0db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4wo7")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rqu1j")

@@ -54,6 +54,9 @@ var breathe_out = true
 const max_health = 100.0
 var health = max_health
 
+@onready var hasnt_died_yet = true
+@onready var has_finished_dying = false
+
 func get_consumption():
 	var depth_ratio = (current_depth / max_depth_possible)
 	consumption_multiplier = max_consumption_multiplier * depth_ratio
@@ -164,6 +167,8 @@ func apply_pressure_stacks(delta):
 	var haze_scale = clampf(8.0 * health/max_health, 2.0, 8.0) 
 	
 	var scaling_factor = 1.0 + 7.0*pow(current_mod, 2.5)  
+	scaling_factor = clampf(scaling_factor, 1.0, 4.0)
+	print(scaling_factor)
 	camera_node.zoom.x = 1.0 * scaling_factor
 	camera_node.zoom.y = 1.0 * scaling_factor
 	
@@ -179,10 +184,25 @@ func apply_pressure_stacks(delta):
 		is_dead = true
 		# print('dead')
 
+func _ready():
+	$DiverSprite.connect("frame_changed", self._on_frame_changed)
+
+func _on_frame_changed():
+	if is_dead && not has_finished_dying:
+		if $DiverSprite.frame == $DiverSprite.sprite_frames.get_frame_count("death") - 1:
+			$DiverSprite.stop()
+			has_finished_dying = true
+			$DiverSprite.set_frame_and_progress($DiverSprite.sprite_frames.get_frame_count("death") - 1, 0.0)
+
 
 func _process(delta: float) -> void:
 	# print("POSITION: " + str(int(position.y)))
 	$LabelNode/Label.text = "pdiff: " + str(int(pressure_diff)) + " hp: " + str(int(health))
+
+	if is_dead && hasnt_died_yet:
+		hasnt_died_yet = false
+		$DiverSprite.animation = "death"
+		$DiverSprite.set_frame_and_progress(0, 0.0)
 		
 	apply_depth()
 	apply_pressure_stacks(delta)
@@ -193,6 +213,10 @@ func _process(delta: float) -> void:
 
 
 func sprint_bubblers(delta): 
+	if is_dead:
+		$Bubblegen/ManyParticles.emitting = false
+		$Bubblegen/FewParticles.emitting = false
+		return
 	if Input.is_action_pressed('sprint'):
 		breath_timer -= 1.5*delta
 	else: 
@@ -225,6 +249,9 @@ func camera_with_depth():
 	
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		linear_damp = 10.0
+		return
 
 	var current_velocity = linear_velocity
 	
@@ -254,18 +281,18 @@ func _physics_process(delta: float) -> void:
 		effective_rotation_speed = lerp(rotation_speed, 0, rotation_speed_ratio)
 
 
-	if Input.is_action_pressed('right_button'):
+	if Input.is_action_pressed('down_button'):
 		apply_torque(effective_rotation_speed * delta)
 		apply_central_force(right_direction * 10000 * delta)
 		is_moving = true
-	elif Input.is_action_pressed('left_button'):
+	elif Input.is_action_pressed('up_button'):
 		apply_torque(-effective_rotation_speed * delta)
 		apply_central_force(left_direction * 10000 * delta)
 		is_moving = true
 	else: is_moving = false
 		
 
-	if (Input.is_action_pressed('up_button')):
+	if (Input.is_action_pressed('right_button')):
 		is_moving = true
 		var applied_thrust
 		if Input.is_action_pressed('sprint'):
@@ -277,6 +304,20 @@ func _physics_process(delta: float) -> void:
 			applied_thrust = lerp(thrust, 0, speed_ratio)  # Decrease thrust as speed approaches max_speed
 			is_sprinting = false
 		apply_central_force(transform.y * -applied_thrust * delta)
+	if (Input.is_action_pressed('right_button')):
+		is_moving = true
+		var applied_thrust
+		var speed_ratio = current_velocity.length() / max_speed
+		applied_thrust = lerp(thrust, 0, speed_ratio)  # Decrease thrust as speed approaches max_speed
+		is_sprinting = false
+		apply_central_force(transform.y * -applied_thrust * delta)
+	if (Input.is_action_pressed('left_button')):
+		is_moving = true
+		var applied_thrust
+		var speed_ratio = current_velocity.length() / max_speed
+		applied_thrust = lerp(thrust, 0, speed_ratio) / 4
+		is_sprinting = false
+		apply_central_force(transform.y * applied_thrust * delta)
 	
 	# Apply forward and sideways friction
 	var forward_friction_force = min(forward_friction * forward_velocity.length_squared(), max_friction) * -forward_velocity.normalized()

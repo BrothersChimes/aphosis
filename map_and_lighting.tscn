@@ -83,7 +83,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(3691, 2287)
+position = Vector2(1908, 7979)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(7, 5)
