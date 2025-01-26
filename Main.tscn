@@ -1,11 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfrgbs2tvoog2"]
+[gd_scene load_steps=15 format=3 uid="uid://dfrgbs2tvoog2"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_6yyh5"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="1_abpg7"]
 [ext_resource type="PackedScene" uid="uid://44wdpnlupmm2" path="res://player.tscn" id="2_i4oek"]
 [ext_resource type="Texture2D" uid="uid://cksygwn6fwtcn" path="res://Assets/Placeholder/background2.png" id="3_3py2l"]
 [ext_resource type="PackedScene" uid="uid://c3ty0pib7djaw" path="res://basic_wall_test.tscn" id="4_c038w"]
+[ext_resource type="Texture2D" uid="uid://cdrgw42duq0uo" path="res://map/light/torchlight1b.png" id="5_0sxjq"]
+[ext_resource type="Texture2D" uid="uid://c4yvpwc6b4h0r" path="res://map/light/torchlight2b.png" id="6_ffwbv"]
 [ext_resource type="PackedScene" uid="uid://c6586uvb04uv8" path="res://HUD.tscn" id="6_fvnd3"]
+[ext_resource type="Texture2D" uid="uid://thphrp2jdgic" path="res://map/light/whitecircle.png" id="7_wa5dh"]
+[ext_resource type="Texture2D" uid="uid://c3jcr7dwovsds" path="res://Assets/redhazemask.png" id="8_wsi7p"]
+[ext_resource type="PackedScene" uid="uid://nsvjajtkaqe4" path="res://map.tscn" id="10_8pq5e"]
+[ext_resource type="PackedScene" uid="uid://batj6suhgdcoy" path="res://relic.tscn" id="12_owyi0"]
+
+[sub_resource type="Gradient" id="Gradient_0hivh"]
+offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
+colors = PackedColorArray(0, 0.5305, 0.937416, 1, 0, 0.781121, 0.907287, 1, 0, 0.388235, 1, 1, 0.797434, 0.887279, 0.922381, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_62yqm"]
+gradient = SubResource("Gradient_0hivh")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_6yyh5")
@@ -17,14 +30,32 @@ scale = Vector2(1.62361, 1.83611)
 texture = ExtResource("1_abpg7")
 
 [node name="Background2" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(921, 591)
 scale = Vector2(3.70313, 4.18125)
 texture = ExtResource("3_3py2l")
 
+[node name="Sky" type="ColorRect" parent="."]
+visible = false
+z_index = -6
+offset_left = -1257.54
+offset_top = -3867.13
+offset_right = 10811.5
+offset_bottom = -0.133789
+color = Color(0.880927, 0.979613, 0.982186, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -6
+offset_left = -1018.0
+offset_top = 3.0
+offset_right = -76.0
+offset_bottom = 9770.0
+rotation = -1.5708
+texture = SubResource("GradientTexture2D_62yqm")
+
 [node name="Player" parent="." instance=ExtResource("2_i4oek")]
-position = Vector2(26, 4)
-rotation = 1.5708
+position = Vector2(3678, 1010)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(7, 5)
@@ -32,14 +63,76 @@ rotation = -1.5708
 ignore_rotation = false
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
-z_index = -1
-offset_left = -626.0
-offset_top = -464.0
-offset_right = 686.0
-offset_bottom = 485.0
-color = Color(0.0352941, 0.0431373, 0.0901961, 1)
+z_index = -7
+z_as_relative = false
+texture_filter = 1
+offset_left = -2944.0
+offset_top = -2230.0
+offset_right = 3103.0
+offset_bottom = 2309.0
+color = Color(0.182122, 0.514698, 0.527075, 1)
+
+[node name="Flashlight" type="PointLight2D" parent="Player"]
+rotation = -1.57079
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("5_0sxjq")
+offset = Vector2(480, 0)
+
+[node name="Flashlight2" type="PointLight2D" parent="Player"]
+position = Vector2(-41.9998, 60.0002)
+rotation = -1.57079
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("6_ffwbv")
+offset = Vector2(480, 0)
+
+[node name="Playerlight" type="PointLight2D" parent="Player"]
+rotation = -1.57079
+energy = 0.05
+shadow_enabled = true
+texture = ExtResource("7_wa5dh")
+offset = Vector2(-16, 0)
+texture_scale = 3.0
+
+[node name="Redhaze" type="Sprite2D" parent="Player"]
+visible = false
+texture_filter = 1
+position = Vector2(5, 11)
+scale = Vector2(8, 8)
+texture = ExtResource("8_wsi7p")
+
+[node name="LabelNode" type="Node2D" parent="Player"]
+position = Vector2(31, 59)
+rotation = -1.5708
+
+[node name="Label" type="Label" parent="Player/LabelNode"]
+visible = false
+offset_left = 27.0
+offset_top = 1.0
+offset_right = 67.0
+offset_bottom = 24.0
 
 [node name="BasicWallTest" parent="." instance=ExtResource("4_c038w")]
-position = Vector2(680, 548)
+position = Vector2(12.459, -427.134)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-33.541, -815.134)
+color = Color(0, 0, 0, 1)
+
+[node name="Map" parent="." instance=ExtResource("10_8pq5e")]
+
+[node name="Skywall" parent="." instance=ExtResource("4_c038w")]
+visible = false
+position = Vector2(340.459, -4.13379)
+scale = Vector2(100, 1)
+
+[node name="Sprite2D" parent="Skywall/StaticBody2D" index="1"]
+visible = false
 
 [node name="HUD" parent="." instance=ExtResource("6_fvnd3")]
+
+[node name="Relic" parent="." instance=ExtResource("12_owyi0")]
+position = Vector2(3803, 931)
+
+[editable path="Skywall"]
