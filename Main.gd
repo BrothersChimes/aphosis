@@ -84,4 +84,3 @@ func _on_tutorial_bounds_entered(body):
 	print('tut bound entered')
 	if body.name == "Player":
 		$HUD/TutorialText.show_tutorial = false
-

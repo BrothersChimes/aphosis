@@ -184,8 +184,6 @@ func apply_pressure_stacks(delta):
 	redhaze.scale.x = haze_scale
 	redhaze.scale.y = haze_scale
 
-	
-	
 	if health <= 0: 
 		is_dead = true
 		# print('dead')
@@ -221,8 +219,30 @@ func _process(delta: float) -> void:
 	suck_oxy(delta)
 	sprint_bubblers(delta)
 	#camera_with_depth()
+	play_music()
 
+@onready var music_player = $BasicMusicPlayer
+@onready var deep_music_player = $DeepMusicPlayer
 
+var is_playing_music = false
+var is_playing_deep_music = false
+
+func play_music(): 
+	if !is_playing_music: 
+		if get_depth() > 1450: 
+			music_player.play()
+			is_playing_music = true
+	if !is_playing_deep_music: 
+		if get_depth() > 5925: 
+			music_player.stop()
+			is_playing_deep_music = true
+			deep_music_player.play()
+	elif is_playing_deep_music and get_depth() < 5000: 
+			deep_music_player.stop()
+			is_playing_deep_music = false
+			is_playing_music = true
+			music_player.play()
+		
 func sprint_bubblers(delta): 
 	if is_dead:
 		$Bubblegen/ManyParticles.emitting = false
