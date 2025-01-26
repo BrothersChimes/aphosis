@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://thphrp2jdgic" path="res://map/light/whitecircle.png" id="7_gk3yb"]
 [ext_resource type="Texture2D" uid="uid://c3jcr7dwovsds" path="res://Assets/redhazemask.png" id="8_bjhrr"]
 [ext_resource type="PackedScene" uid="uid://c3ty0pib7djaw" path="res://basic_wall_test.tscn" id="8_khcaw"]
-[ext_resource type="Texture2D" uid="uid://dprwfow1bnenx" path="res://Assets/map/map4.png" id="10_asysh"]
+[ext_resource type="Texture2D" uid="uid://gh8bjd1au6ej" path="res://Assets/map/map6.png" id="10_468ep"]
 [ext_resource type="Texture2D" uid="uid://ccjaenoxdgca5" path="res://map/light/sunlight.png" id="10_jp1ly"]
 [ext_resource type="Texture2D" uid="uid://brhb8crj2darx" path="res://map/light/halfcircle.png" id="11_1lwtq"]
 [ext_resource type="PackedScene" uid="uid://c6586uvb04uv8" path="res://HUD.tscn" id="12_v2bcd"]
@@ -153,7 +153,7 @@ z_index = -4
 texture_filter = 1
 position = Vector2(5050.9, 4225.97)
 scale = Vector2(4, 4)
-texture = ExtResource("10_asysh")
+texture = ExtResource("10_468ep")
 
 [node name="Sun" type="PointLight2D" parent="."]
 position = Vector2(3269.46, -3979.13)
