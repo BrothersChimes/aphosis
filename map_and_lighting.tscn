@@ -55,7 +55,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(3678, 1010)
+position = Vector2(3630, 761)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(7, 5)
@@ -117,6 +117,7 @@ offset_bottom = 24.0
 position = Vector2(12.459, -427.134)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2(-33.541, -815.134)
 color = Color(0, 0, 0, 1)
 
