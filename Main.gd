@@ -75,6 +75,14 @@ func _on_relic_entered(relic):
 		player.sprint_max_speed += 100
 	if relic.relic_type == "deaddiver":
 		show_relic_text("FELLOW DIVER FOUND", "Robert Parr", "A sad state of affairs", "In his final moments, running out of O2, he chose to dive deeper and make one last discovery...")
+	if relic.relic_type == "deaddiver2":
+		show_relic_text("FELLOW DIVER FOUND", "Kodor Barnes", "Ashes to ashes", "He followed the false chimney up, thinking it was the exit")
+	if relic.relic_type == "deaddiver3":
+		show_relic_text("FELLOW DIVER FOUND", "Kelsey Boondock", "A mother of 3", "She thought she could find the exit if she kept the sunbeam in sight...")
+	if relic.relic_type == "deaddiver4":
+		show_relic_text("FELLOW DIVER FOUND", "Liam Chimes", "The younger brother", "Thougt he was invincible, until he wasn't...")
+	if relic.relic_type == "deaddiver5":
+		show_relic_text("FELLOW DIVER FOUND", "Mark Chimes", "The older brother", "Should've known better...")
 		
 		 
 	relic.despawn()

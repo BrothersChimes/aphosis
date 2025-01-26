@@ -61,7 +61,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
 [node name="Player" parent="." instance=ExtResource("2_i4oek")]
-position = Vector2(9599, 4097)
+position = Vector2(3099, 5837)
 rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -173,6 +173,38 @@ relic_type = "deaddiver"
 [node name="Sprite2D" parent="Relics/deaddiver" index="2"]
 texture = ExtResource("15_axpkj")
 
+[node name="deaddiver2" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(4837, 3144)
+rotation = 0.735743
+relic_type = "deaddiver2"
+
+[node name="Sprite2D" parent="Relics/deaddiver2" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="deaddiver3" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(3138, 3727)
+rotation = -0.98764
+relic_type = "deaddiver3"
+
+[node name="Sprite2D" parent="Relics/deaddiver3" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="deaddiver4" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(3038, 5911)
+rotation = -0.98764
+relic_type = "deaddiver4"
+
+[node name="Sprite2D" parent="Relics/deaddiver4" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="deaddiver5" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(957, 2914)
+rotation = 1.1343
+relic_type = "deaddiver5"
+
+[node name="Sprite2D" parent="Relics/deaddiver5" index="2"]
+texture = ExtResource("15_axpkj")
+
 [node name="Tutorial Bounds" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="Tutorial Bounds"]
@@ -191,6 +223,14 @@ shape = SubResource("RectangleShape2D_2um0i")
 [connection signal="body_entered" from="Relics/NumbSkull/Area2D" to="Relics/NumbSkull" method="_on_area_2d_body_entered"]
 [connection signal="relic_entered" from="Relics/deaddiver" to="." method="_on_relic_entered"]
 [connection signal="body_entered" from="Relics/deaddiver/Area2D" to="Relics/deaddiver" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver2" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver2/Area2D" to="Relics/deaddiver2" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver3" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver3/Area2D" to="Relics/deaddiver3" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver4" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver4/Area2D" to="Relics/deaddiver4" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver5" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver5/Area2D" to="Relics/deaddiver5" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Tutorial Bounds/Area2D" to="." method="_on_tutorial_bounds_entered"]
 
 [editable path="Skywall"]
@@ -198,3 +238,7 @@ shape = SubResource("RectangleShape2D_2um0i")
 [editable path="Relics/Anti"]
 [editable path="Relics/NumbSkull"]
 [editable path="Relics/deaddiver"]
+[editable path="Relics/deaddiver2"]
+[editable path="Relics/deaddiver3"]
+[editable path="Relics/deaddiver4"]
+[editable path="Relics/deaddiver5"]
