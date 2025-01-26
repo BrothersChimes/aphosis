@@ -6,16 +6,16 @@ var has_numbskull = false
 # Movement
 const rotation_speed = 9000
 const max_rotation_speed = 5.0
-const max_speed = 500.0
-const thrust = 12000
+var max_speed = 500.0
+var thrust = 12000
 const forward_friction = 4.0
 const sideways_friction = 120.0
 const max_friction = 60000.0
 
 const sprint_rotation_speed = 12000
 const sprint_max_rotation_speed = 5.0
-const sprint_max_speed = 500.0
-const sprint_thrust = 60000
+var sprint_max_speed = 500.0
+var sprint_thrust = 60000
 
 
 var current_angular_velocity: float = 0.0  # Custom angular velocity

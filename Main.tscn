@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfrgbs2tvoog2"]
+[gd_scene load_steps=19 format=3 uid="uid://dfrgbs2tvoog2"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_6yyh5"]
 [ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="1_abpg7"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://c3jcr7dwovsds" path="res://Assets/redhazemask.png" id="8_wsi7p"]
 [ext_resource type="PackedScene" uid="uid://nsvjajtkaqe4" path="res://map.tscn" id="10_8pq5e"]
 [ext_resource type="PackedScene" uid="uid://batj6suhgdcoy" path="res://relic.tscn" id="12_owyi0"]
+[ext_resource type="Texture2D" uid="uid://dlyndnek6hvg" path="res://Assets/artifacts/antikythera.png" id="13_2fa7o"]
 [ext_resource type="Texture2D" uid="uid://i64lwc2asj58" path="res://Assets/artifacts/skully.png" id="13_u5gmu"]
+[ext_resource type="Texture2D" uid="uid://bg1xn0xto2dnc" path="res://Assets/decor/skeleton3.png" id="15_axpkj"]
 
 [sub_resource type="Gradient" id="Gradient_0hivh"]
 offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
@@ -59,7 +61,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
 [node name="Player" parent="." instance=ExtResource("2_i4oek")]
-position = Vector2(1967, 43)
+position = Vector2(9599, 4097)
 rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -142,6 +144,19 @@ visible = false
 position = Vector2(3746, 2407)
 relic_type = "madskull"
 
+[node name="Anti" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(4541, 5912)
+relic_type = "anti"
+
+[node name="CollisionShape2D" parent="Relics/Anti/StaticBody2D" index="0"]
+scale = Vector2(1.8, 1.8)
+
+[node name="CollisionShape2D" parent="Relics/Anti/Area2D" index="0"]
+scale = Vector2(1.8, 1.8)
+
+[node name="Sprite2D" parent="Relics/Anti" index="2"]
+texture = ExtResource("13_2fa7o")
+
 [node name="NumbSkull" parent="Relics" instance=ExtResource("12_owyi0")]
 position = Vector2(1524, 3387)
 relic_type = "numbskull"
@@ -149,6 +164,14 @@ relic_type = "numbskull"
 [node name="Sprite2D" parent="Relics/NumbSkull" index="2"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_u5gmu")
+
+[node name="deaddiver" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(9462, 4276)
+rotation = 0.735743
+relic_type = "deaddiver"
+
+[node name="Sprite2D" parent="Relics/deaddiver" index="2"]
+texture = ExtResource("15_axpkj")
 
 [node name="Tutorial Bounds" type="Node2D" parent="."]
 
@@ -162,10 +185,16 @@ shape = SubResource("RectangleShape2D_2um0i")
 
 [connection signal="relic_entered" from="Relics/MadSkull" to="." method="_on_relic_entered"]
 [connection signal="body_entered" from="Relics/MadSkull/Area2D" to="Relics/MadSkull" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/Anti" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/Anti/Area2D" to="Relics/Anti" method="_on_area_2d_body_entered"]
 [connection signal="relic_entered" from="Relics/NumbSkull" to="." method="_on_relic_entered"]
 [connection signal="body_entered" from="Relics/NumbSkull/Area2D" to="Relics/NumbSkull" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver/Area2D" to="Relics/deaddiver" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Tutorial Bounds/Area2D" to="." method="_on_tutorial_bounds_entered"]
 
 [editable path="Skywall"]
 [editable path="Relics/MadSkull"]
+[editable path="Relics/Anti"]
 [editable path="Relics/NumbSkull"]
+[editable path="Relics/deaddiver"]

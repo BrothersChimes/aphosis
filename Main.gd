@@ -52,6 +52,7 @@ func _process(delta):
 
 var has_madskull = false;
 var has_numbskull = false;
+var has_anti = false
 func _on_relic_entered(relic):
 	print("got ", relic.relic_type)
 	if relic.relic_type == "madskull" and not has_madskull:
@@ -65,6 +66,17 @@ func _on_relic_entered(relic):
 		print('player is getting skull')
 		show_relic_text("RELIC FOUND", "Horrifically Deformed Giant Skull", "Reduces Barotrauma", "Nothing could break free from a skull so thick! Not even ideas.")
 		player.has_numbskull = true
+	if relic.relic_type == "anti" and not has_anti:
+		has_anti = true
+		show_relic_text("RELIC FOUND", "Antikythera", "Increases Movement Speed", "A curious artifact, an antiquated diving helm in a much larger size.")
+		player.thrust += 2500
+		player.max_speed += 100
+		player.sprint_thrust += 25000
+		player.sprint_max_speed += 100
+	if relic.relic_type == "deaddiver":
+		show_relic_text("FELLOW DIVER FOUND", "Robert Parr", "A sad state of affairs", "In his final moments, running out of O2, he chose to dive deeper and make one last discovery...")
+		
+		 
 	relic.despawn()
 	is_showing_relic = true
 	time_until_modulate_down = 20
