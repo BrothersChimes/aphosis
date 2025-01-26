@@ -28,6 +28,7 @@ colors = PackedColorArray(2.88785e-07, 0.610989, 0.572037, 1, 1, 1, 1, 1, 0, 0.4
 gradient = SubResource("Gradient_5aq7j")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-986, -2238)
 script = ExtResource("1_mt1lk")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -70,7 +71,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_baf8f")
 
 [node name="Player" parent="." instance=ExtResource("4_k1fx0")]
-position = Vector2(4213, 5778)
+position = Vector2(3026, 447)
 rotation = 3.14159
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
