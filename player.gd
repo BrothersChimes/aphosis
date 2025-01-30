@@ -59,6 +59,8 @@ var health = max_health
 @onready var hasnt_died_yet = true
 @onready var has_finished_dying = false
 
+@onready var camera_node = get_parent().get_node("Camera2D")
+
 func get_consumption():
 	var depth_ratio = (current_depth / max_depth_possible)
 	consumption_multiplier = max_consumption_multiplier * depth_ratio
@@ -222,7 +224,35 @@ func _process(delta: float) -> void:
 	sprint_bubblers(delta)
 	#camera_with_depth()
 	play_music()
+	rotate_camera(delta)
 
+enum CameraMode { 
+	STATIC,
+	DIRECT,
+	DELAYED,
+	DEPTH_DELAYED,
+}	
+
+var camera_mode = CameraMode.DEPTH_DELAYED
+
+func rotate_camera(delta): 
+	camera_node.position = position
+	match camera_mode:
+		CameraMode.STATIC:
+			pass
+		CameraMode.DIRECT:
+			camera_node.rotation = rotation + deg_to_rad(-90)
+		CameraMode.DELAYED:
+			camera_node.rotation = lerp_angle(camera_node.rotation, rotation + deg_to_rad(-90), delta*0.5)
+		CameraMode.DEPTH_DELAYED:
+			var depth = get_depth()
+			# var rotator = clamp(depth - 1000, 0,10000)
+			if depth >= 1200:
+				camera_node.rotation = lerp_angle(camera_node.rotation, rotation + deg_to_rad(-90), delta*0.5)
+			if depth >= 2000: 
+				camera_mode = CameraMode.DIRECT
+
+			
 @onready var music_player = $BasicMusicPlayer
 @onready var deep_music_player = $DeepMusicPlayer
 
@@ -269,14 +299,12 @@ func sprint_bubblers(delta):
 		breathe_out = !breathe_out
 		breath_timer = 3.0
 	
-@onready var camera_node = $Camera2D
-
 func camera_with_depth(): 
 	if position.y > camera_resize_start: 
 		var scaling_factor = 1.0 + clampf(position.y - camera_resize_start, 0.0, 3000.0) / 1000  
 		camera_node.zoom.x = 1.0 / scaling_factor
 		camera_node.zoom.y = 1.0 / scaling_factor
-	else: 
+	else:
 		camera_node.zoom.x = 1
 		camera_node.zoom.y = 1	
 	
