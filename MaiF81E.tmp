@@ -1,0 +1,243 @@
+[gd_scene load_steps=19 format=3 uid="uid://dfrgbs2tvoog2"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_6yyh5"]
+[ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="1_abpg7"]
+[ext_resource type="PackedScene" uid="uid://44wdpnlupmm2" path="res://player.tscn" id="2_i4oek"]
+[ext_resource type="Texture2D" uid="uid://cksygwn6fwtcn" path="res://Assets/Placeholder/background2.png" id="3_3py2l"]
+[ext_resource type="PackedScene" uid="uid://c3ty0pib7djaw" path="res://basic_wall_test.tscn" id="4_c038w"]
+[ext_resource type="Texture2D" uid="uid://cdrgw42duq0uo" path="res://map/light/torchlight1b.png" id="5_0sxjq"]
+[ext_resource type="Texture2D" uid="uid://c4yvpwc6b4h0r" path="res://map/light/torchlight2b.png" id="6_ffwbv"]
+[ext_resource type="PackedScene" uid="uid://c6586uvb04uv8" path="res://HUD.tscn" id="6_fvnd3"]
+[ext_resource type="Texture2D" uid="uid://thphrp2jdgic" path="res://map/light/whitecircle.png" id="7_wa5dh"]
+[ext_resource type="Texture2D" uid="uid://c3jcr7dwovsds" path="res://Assets/redhazemask.png" id="8_wsi7p"]
+[ext_resource type="PackedScene" uid="uid://nsvjajtkaqe4" path="res://map.tscn" id="10_8pq5e"]
+[ext_resource type="PackedScene" uid="uid://batj6suhgdcoy" path="res://relic.tscn" id="12_owyi0"]
+[ext_resource type="Texture2D" uid="uid://dlyndnek6hvg" path="res://Assets/artifacts/antikythera.png" id="13_2fa7o"]
+[ext_resource type="Texture2D" uid="uid://i64lwc2asj58" path="res://Assets/artifacts/skully.png" id="13_u5gmu"]
+[ext_resource type="Texture2D" uid="uid://bg1xn0xto2dnc" path="res://Assets/decor/skeleton3.png" id="15_axpkj"]
+
+[sub_resource type="Gradient" id="Gradient_0hivh"]
+offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
+colors = PackedColorArray(0, 0.5305, 0.937416, 1, 0, 0.781121, 0.907287, 1, 0, 0.388235, 1, 1, 0.797434, 0.887279, 0.922381, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_62yqm"]
+gradient = SubResource("Gradient_0hivh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2um0i"]
+size = Vector2(135.154, 887.016)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6yyh5")
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(583.5, 328.5)
+scale = Vector2(1.62361, 1.83611)
+texture = ExtResource("1_abpg7")
+
+[node name="Background2" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(921, 591)
+scale = Vector2(3.70313, 4.18125)
+texture = ExtResource("3_3py2l")
+
+[node name="Sky" type="ColorRect" parent="."]
+visible = false
+z_index = -6
+offset_left = -1257.54
+offset_top = -3867.13
+offset_right = 10811.5
+offset_bottom = -0.133789
+color = Color(0.880927, 0.979613, 0.982186, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -6
+offset_left = -1018.0
+offset_top = 3.0
+offset_right = -76.0
+offset_bottom = 9770.0
+rotation = -1.5708
+texture = SubResource("GradientTexture2D_62yqm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2052, 125)
+ignore_rotation = false
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+z_index = -7
+z_as_relative = false
+texture_filter = 1
+offset_left = -2944.0
+offset_top = -2230.0
+offset_right = 3103.0
+offset_bottom = 2309.0
+color = Color(0.182122, 0.514698, 0.527075, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_i4oek")]
+position = Vector2(2057, 118)
+rotation = 1.5708
+
+[node name="Flashlight" type="PointLight2D" parent="Player"]
+rotation = -1.57079
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("5_0sxjq")
+offset = Vector2(480, 0)
+
+[node name="Flashlight2" type="PointLight2D" parent="Player"]
+position = Vector2(-41.9998, 60.0002)
+rotation = -1.57079
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("6_ffwbv")
+offset = Vector2(480, 0)
+
+[node name="Playerlight" type="PointLight2D" parent="Player"]
+rotation = -1.57079
+energy = 0.05
+shadow_enabled = true
+texture = ExtResource("7_wa5dh")
+offset = Vector2(-16, 0)
+texture_scale = 3.0
+
+[node name="Redhaze" type="Sprite2D" parent="Player"]
+texture_filter = 1
+position = Vector2(5, 11)
+scale = Vector2(8, 8)
+texture = ExtResource("8_wsi7p")
+
+[node name="LabelNode" type="Node2D" parent="Player"]
+position = Vector2(31, 59)
+rotation = -1.5708
+
+[node name="Label" type="Label" parent="Player/LabelNode"]
+visible = false
+offset_left = 27.0
+offset_top = 1.0
+offset_right = 67.0
+offset_bottom = 24.0
+
+[node name="BasicWallTest" parent="." instance=ExtResource("4_c038w")]
+position = Vector2(12.459, -427.134)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-33.541, -815.134)
+color = Color(0, 0, 0, 1)
+
+[node name="Map" parent="." instance=ExtResource("10_8pq5e")]
+
+[node name="Skywall" parent="." instance=ExtResource("4_c038w")]
+visible = false
+position = Vector2(340.459, -4.13379)
+scale = Vector2(100, 1)
+
+[node name="Sprite2D" parent="Skywall/StaticBody2D" index="1"]
+visible = false
+
+[node name="HUD" parent="." instance=ExtResource("6_fvnd3")]
+
+[node name="Relics" type="Node2D" parent="."]
+
+[node name="MadSkull" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(3746, 2407)
+relic_type = "madskull"
+
+[node name="Anti" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(4541, 5912)
+relic_type = "anti"
+
+[node name="CollisionShape2D" parent="Relics/Anti/StaticBody2D" index="0"]
+scale = Vector2(1.8, 1.8)
+
+[node name="CollisionShape2D" parent="Relics/Anti/Area2D" index="0"]
+scale = Vector2(1.8, 1.8)
+
+[node name="Sprite2D" parent="Relics/Anti" index="2"]
+texture = ExtResource("13_2fa7o")
+
+[node name="NumbSkull" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(1524, 3387)
+relic_type = "numbskull"
+
+[node name="Sprite2D" parent="Relics/NumbSkull" index="2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_u5gmu")
+
+[node name="deaddiver" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(9462, 4276)
+rotation = 0.735743
+relic_type = "deaddiver"
+
+[node name="Sprite2D" parent="Relics/deaddiver" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="deaddiver2" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(4837, 3144)
+rotation = 0.735743
+relic_type = "deaddiver2"
+
+[node name="Sprite2D" parent="Relics/deaddiver2" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="deaddiver3" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(3138, 3727)
+rotation = -0.98764
+relic_type = "deaddiver3"
+
+[node name="Sprite2D" parent="Relics/deaddiver3" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="deaddiver4" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(3038, 5911)
+rotation = -0.98764
+relic_type = "deaddiver4"
+
+[node name="Sprite2D" parent="Relics/deaddiver4" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="deaddiver5" parent="Relics" instance=ExtResource("12_owyi0")]
+position = Vector2(957, 2914)
+rotation = 1.1343
+relic_type = "deaddiver5"
+
+[node name="Sprite2D" parent="Relics/deaddiver5" index="2"]
+texture = ExtResource("15_axpkj")
+
+[node name="Tutorial Bounds" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Tutorial Bounds"]
+position = Vector2(3346, 599)
+rotation = 0.306858
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Bounds/Area2D"]
+position = Vector2(-65.2078, -161.467)
+shape = SubResource("RectangleShape2D_2um0i")
+
+[connection signal="relic_entered" from="Relics/MadSkull" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/MadSkull/Area2D" to="Relics/MadSkull" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/Anti" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/Anti/Area2D" to="Relics/Anti" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/NumbSkull" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/NumbSkull/Area2D" to="Relics/NumbSkull" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver/Area2D" to="Relics/deaddiver" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver2" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver2/Area2D" to="Relics/deaddiver2" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver3" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver3/Area2D" to="Relics/deaddiver3" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver4" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver4/Area2D" to="Relics/deaddiver4" method="_on_area_2d_body_entered"]
+[connection signal="relic_entered" from="Relics/deaddiver5" to="." method="_on_relic_entered"]
+[connection signal="body_entered" from="Relics/deaddiver5/Area2D" to="Relics/deaddiver5" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Tutorial Bounds/Area2D" to="." method="_on_tutorial_bounds_entered"]
+
+[editable path="Skywall"]
+[editable path="Relics/MadSkull"]
+[editable path="Relics/Anti"]
+[editable path="Relics/NumbSkull"]
+[editable path="Relics/deaddiver"]
+[editable path="Relics/deaddiver2"]
+[editable path="Relics/deaddiver3"]
+[editable path="Relics/deaddiver4"]
+[editable path="Relics/deaddiver5"]
