@@ -44,8 +44,14 @@ const max_depth_possible = 8500.0
 @onready var current_pressure = current_depth
 @onready var current_barotrauma = 1
 @onready var is_barotraumatic = 0
-const PRESSURE_STACK_RAMP_UP = 0.3
+const PRESSURE_STACK_RAMP_UP = 0.005
 const PRESSURE_STACK_RAMP_DOWN = 0.05
+
+#flip movement system
+var is_flipping = false
+var flip = false
+var flip_timer = 0.0
+const flip_time = 1.2
 
 const camera_resize_start = 5000
 
@@ -113,7 +119,7 @@ var pressure_diff = 0
 var current_mod = 0.0
 
 func apply_pressure_stacks(delta):
-	if Input.is_action_pressed('decompress'):
+	if Input.is_action_pressed('decompress') and current_barotrauma < 3:
 		is_decompressing = true
 	else:
 		is_decompressing = false
@@ -202,6 +208,8 @@ func _on_frame_changed():
 
 
 func _process(delta: float) -> void:
+	if Input.is_action_pressed('pressurize'):
+		current_pressure = current_depth
 	# print("POSITION: " + str(int(position.y)))
 	$LabelNode/Label.text = "pdiff: " + str(int(pressure_diff)) + " hp: " + str(int(health))
 
@@ -303,9 +311,24 @@ func _physics_process(delta: float) -> void:
 		apply_central_force((forward_friction_force + sideways_friction_force) * delta)
 		return
 		
+	var effective_rotation_speed
+	if Input.is_action_pressed('flip'):
+		if not is_flipping:
+			flip_timer = 0.0
+		is_flipping = true
+	if is_flipping:
+		if flip_timer < flip_time:
+			is_sprinting = true
+			var rotation_speed_ratio = abs(current_angular_velocity) / (sprint_max_rotation_speed * 10)
+			effective_rotation_speed = lerp(sprint_rotation_speed, 0, rotation_speed_ratio)
+			apply_torque(-effective_rotation_speed * delta * 6)
+		else:
+			is_sprinting = false
+			is_flipping = false
+		flip_timer += delta
+
 
 	# Calculate effective rotation speed based on current rotation speed
-	var effective_rotation_speed
 	if Input.is_action_pressed('sprint'):
 		var rotation_speed_ratio = abs(current_angular_velocity) / sprint_max_rotation_speed
 		effective_rotation_speed = lerp(sprint_rotation_speed, 0, rotation_speed_ratio)
@@ -314,26 +337,26 @@ func _physics_process(delta: float) -> void:
 		effective_rotation_speed = lerp(rotation_speed, 0, rotation_speed_ratio)
 
 
-	if Input.is_action_pressed('down_button'):
+	if Input.is_action_pressed('right_button'):
 		apply_torque(effective_rotation_speed * delta)
 		apply_central_force(right_direction * 10000 * delta)
 		is_moving = true
-		if Input.is_action_pressed('sprint') and not (Input.is_action_pressed('right_button') or  Input.is_action_pressed('right_button')):
+		if Input.is_action_pressed('sprint') and not (Input.is_action_pressed('up_button') or  Input.is_action_pressed('up_button')):
 			is_sprinting = true
 			apply_torque(effective_rotation_speed * delta)
 			apply_torque(effective_rotation_speed * delta)
-	elif Input.is_action_pressed('up_button'):
+	elif Input.is_action_pressed('left_button'):
 		apply_torque(-effective_rotation_speed * delta)
 		apply_central_force(left_direction * 10000 * delta)
 		is_moving = true
-		if Input.is_action_pressed('sprint') and not (Input.is_action_pressed('right_button') or  Input.is_action_pressed('right_button')):
+		if Input.is_action_pressed('sprint') and not (Input.is_action_pressed('up_button') or  Input.is_action_pressed('up_button')):
 			is_sprinting = true
 			apply_torque(-effective_rotation_speed * delta)
 			apply_torque(-effective_rotation_speed * delta)
 	else: is_moving = false
 		
 
-	if (Input.is_action_pressed('right_button')):
+	if (Input.is_action_pressed('up_button')):
 		is_moving = true
 		var applied_thrust
 		if Input.is_action_pressed('sprint'):
@@ -345,7 +368,7 @@ func _physics_process(delta: float) -> void:
 			applied_thrust = lerp(thrust, 0, speed_ratio)  # Decrease thrust as speed approaches max_speed
 			is_sprinting = false
 		apply_central_force(transform.y * -applied_thrust * delta)
-	if (Input.is_action_pressed('left_button')):
+	if (Input.is_action_pressed('down_button')):
 		is_moving = true
 		var applied_thrust
 		var speed_ratio = current_velocity.length() / max_speed

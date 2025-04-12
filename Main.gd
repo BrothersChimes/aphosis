@@ -9,6 +9,7 @@ func _ready():
 	$HUD/GuageO2.set_all_values(o2, 0.0, player.max_oxy)
 	$HUD/GuageConsumption.set_all_values(o2, 0.0, player.max_consumption)
 	$HUD/GuageDepth.set_all_values(player.get_depth(), 0.0, player.max_depth_possible)
+	$HUD/GuageBends.set_all_values(player.get_pressure(), 0.0, player.max_depth_possible)
 
 
 var modulate_up = true
@@ -23,6 +24,7 @@ func _process(delta):
 	$HUD/GuageO2.set_value(player.get_oxy())
 	$HUD/GuageConsumption.set_value(player.get_consumption())
 	$HUD/GuageDepth.set_value(player.get_depth())
+	$HUD/GuageBends.set_value(player.get_pressure())
 	if player.is_barotraumatic:
 		$HUD/BarotraumaIcon.set_barotrauma_level_to(player.get_barotrauma_level())
 	else:
@@ -80,7 +82,7 @@ func _on_relic_entered(relic):
 	if relic.relic_type == "deaddiver3":
 		show_relic_text("FELLOW DIVER FOUND", "Kelsey Boondock", "A mother of 3", "She thought she could find the exit if she kept the sunbeam in sight...")
 	if relic.relic_type == "deaddiver4":
-		show_relic_text("FELLOW DIVER FOUND", "Liam Chimes", "The younger brother", "Thougt he was invincible, until he wasn't...")
+		show_relic_text("FELLOW DIVER FOUND", "Liam Chimes", "The younger brother", "Thought he was invincible, until he wasn't...")
 	if relic.relic_type == "deaddiver5":
 		show_relic_text("FELLOW DIVER FOUND", "Mark Chimes", "The older brother", "Should've known better...")
 		

@@ -215,3 +215,5 @@ stream = ExtResource("5_k4dfm")
 
 [node name="DeepMusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_3qqqv")
+
+[node name="Node2D" type="Node2D" parent="."]

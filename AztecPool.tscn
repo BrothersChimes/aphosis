@@ -1,20 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfrgbs2tvoog2"]
+[gd_scene load_steps=19 format=3 uid="uid://bbpl2usx5mg6s"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_6yyh5"]
-[ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="1_abpg7"]
-[ext_resource type="PackedScene" uid="uid://44wdpnlupmm2" path="res://player.tscn" id="2_i4oek"]
-[ext_resource type="Texture2D" uid="uid://cksygwn6fwtcn" path="res://Assets/Placeholder/background2.png" id="3_3py2l"]
-[ext_resource type="PackedScene" uid="uid://c3ty0pib7djaw" path="res://basic_wall_test.tscn" id="4_c038w"]
-[ext_resource type="Texture2D" uid="uid://cdrgw42duq0uo" path="res://map/light/torchlight1b.png" id="5_0sxjq"]
-[ext_resource type="Texture2D" uid="uid://c4yvpwc6b4h0r" path="res://map/light/torchlight2b.png" id="6_ffwbv"]
-[ext_resource type="PackedScene" uid="uid://c6586uvb04uv8" path="res://HUD.tscn" id="6_fvnd3"]
-[ext_resource type="Texture2D" uid="uid://thphrp2jdgic" path="res://map/light/whitecircle.png" id="7_wa5dh"]
-[ext_resource type="Texture2D" uid="uid://c3jcr7dwovsds" path="res://Assets/redhazemask.png" id="8_wsi7p"]
-[ext_resource type="PackedScene" uid="uid://nsvjajtkaqe4" path="res://map.tscn" id="10_8pq5e"]
-[ext_resource type="PackedScene" uid="uid://batj6suhgdcoy" path="res://relic.tscn" id="12_owyi0"]
-[ext_resource type="Texture2D" uid="uid://dlyndnek6hvg" path="res://Assets/artifacts/antikythera.png" id="13_2fa7o"]
-[ext_resource type="Texture2D" uid="uid://i64lwc2asj58" path="res://Assets/artifacts/skully.png" id="13_u5gmu"]
-[ext_resource type="Texture2D" uid="uid://bg1xn0xto2dnc" path="res://Assets/decor/skeleton3.png" id="15_axpkj"]
+[ext_resource type="Script" path="res://Main.gd" id="1_5fe8q"]
+[ext_resource type="Texture2D" uid="uid://b3o2sav8o3qm6" path="res://Assets/Placeholder/Background.jpg" id="2_wwqgv"]
+[ext_resource type="Texture2D" uid="uid://cksygwn6fwtcn" path="res://Assets/Placeholder/background2.png" id="3_qj2do"]
+[ext_resource type="PackedScene" uid="uid://44wdpnlupmm2" path="res://player.tscn" id="4_ws8wm"]
+[ext_resource type="Texture2D" uid="uid://cdrgw42duq0uo" path="res://map/light/torchlight1b.png" id="5_uomv6"]
+[ext_resource type="Texture2D" uid="uid://c4yvpwc6b4h0r" path="res://map/light/torchlight2b.png" id="6_bdh60"]
+[ext_resource type="Texture2D" uid="uid://thphrp2jdgic" path="res://map/light/whitecircle.png" id="7_qel8j"]
+[ext_resource type="Texture2D" uid="uid://c3jcr7dwovsds" path="res://Assets/redhazemask.png" id="8_qro84"]
+[ext_resource type="PackedScene" uid="uid://c3ty0pib7djaw" path="res://basic_wall_test.tscn" id="9_8hv46"]
+[ext_resource type="PackedScene" uid="uid://c6586uvb04uv8" path="res://HUD.tscn" id="11_mu1g1"]
+[ext_resource type="PackedScene" uid="uid://batj6suhgdcoy" path="res://relic.tscn" id="12_csn5e"]
+[ext_resource type="Texture2D" uid="uid://dlyndnek6hvg" path="res://Assets/artifacts/antikythera.png" id="13_ut22x"]
+[ext_resource type="Texture2D" uid="uid://i64lwc2asj58" path="res://Assets/artifacts/skully.png" id="14_8y6vc"]
+[ext_resource type="Texture2D" uid="uid://bg1xn0xto2dnc" path="res://Assets/decor/skeleton3.png" id="15_uxc07"]
+[ext_resource type="Texture2D" uid="uid://dlj0rnwlsm8on" path="res://Assets/map/Placeholder/aztecpool.png" id="15_v6gqa"]
 
 [sub_resource type="Gradient" id="Gradient_0hivh"]
 offsets = PackedFloat32Array(0, 0.0476684, 0.2, 0.813471)
@@ -27,20 +27,20 @@ gradient = SubResource("Gradient_0hivh")
 size = Vector2(135.154, 887.016)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_6yyh5")
+script = ExtResource("1_5fe8q")
 
 [node name="Background" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(583.5, 328.5)
 scale = Vector2(1.62361, 1.83611)
-texture = ExtResource("1_abpg7")
+texture = ExtResource("2_wwqgv")
 
 [node name="Background2" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 position = Vector2(921, 591)
 scale = Vector2(3.70313, 4.18125)
-texture = ExtResource("3_3py2l")
+texture = ExtResource("3_qj2do")
 
 [node name="Sky" type="ColorRect" parent="."]
 visible = false
@@ -60,13 +60,11 @@ offset_bottom = 9770.0
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_62yqm")
 
-[node name="Player" parent="." instance=ExtResource("2_i4oek")]
-position = Vector2(7049, 5435)
-rotation = 1.5708
+[node name="Player" parent="." instance=ExtResource("4_ws8wm")]
+position = Vector2(451, 226)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(7, 5)
-rotation = -1.5708
+position = Vector2(0, -116)
 ignore_rotation = false
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
@@ -83,7 +81,7 @@ color = Color(0.182122, 0.514698, 0.527075, 1)
 rotation = -1.57079
 energy = 0.2
 shadow_enabled = true
-texture = ExtResource("5_0sxjq")
+texture = ExtResource("5_uomv6")
 offset = Vector2(480, 0)
 
 [node name="Flashlight2" type="PointLight2D" parent="Player"]
@@ -91,14 +89,14 @@ position = Vector2(-41.9998, 60.0002)
 rotation = -1.57079
 energy = 0.2
 shadow_enabled = true
-texture = ExtResource("6_ffwbv")
+texture = ExtResource("6_bdh60")
 offset = Vector2(480, 0)
 
 [node name="Playerlight" type="PointLight2D" parent="Player"]
 rotation = -1.57079
 energy = 0.05
 shadow_enabled = true
-texture = ExtResource("7_wa5dh")
+texture = ExtResource("7_qel8j")
 offset = Vector2(-16, 0)
 texture_scale = 3.0
 
@@ -106,7 +104,7 @@ texture_scale = 3.0
 texture_filter = 1
 position = Vector2(5, 11)
 scale = Vector2(8, 8)
-texture = ExtResource("8_wsi7p")
+texture = ExtResource("8_qro84")
 
 [node name="LabelNode" type="Node2D" parent="Player"]
 position = Vector2(31, 59)
@@ -119,16 +117,15 @@ offset_top = 1.0
 offset_right = 67.0
 offset_bottom = 24.0
 
-[node name="BasicWallTest" parent="." instance=ExtResource("4_c038w")]
+[node name="BasicWallTest" parent="." instance=ExtResource("9_8hv46")]
 position = Vector2(12.459, -427.134)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2(-33.541, -815.134)
 color = Color(0, 0, 0, 1)
 
-[node name="Map" parent="." instance=ExtResource("10_8pq5e")]
-
-[node name="Skywall" parent="." instance=ExtResource("4_c038w")]
+[node name="Skywall" parent="." instance=ExtResource("9_8hv46")]
 visible = false
 position = Vector2(340.459, -4.13379)
 scale = Vector2(100, 1)
@@ -136,16 +133,15 @@ scale = Vector2(100, 1)
 [node name="Sprite2D" parent="Skywall/StaticBody2D" index="1"]
 visible = false
 
-[node name="HUD" parent="." instance=ExtResource("6_fvnd3")]
-visible = false
+[node name="HUD" parent="." instance=ExtResource("11_mu1g1")]
 
 [node name="Relics" type="Node2D" parent="."]
 
-[node name="MadSkull" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="MadSkull" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(3746, 2407)
 relic_type = "madskull"
 
-[node name="Anti" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="Anti" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(4541, 5912)
 relic_type = "anti"
 
@@ -156,65 +152,82 @@ scale = Vector2(1.8, 1.8)
 scale = Vector2(1.8, 1.8)
 
 [node name="Sprite2D" parent="Relics/Anti" index="2"]
-texture = ExtResource("13_2fa7o")
+texture = ExtResource("13_ut22x")
 
-[node name="NumbSkull" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="NumbSkull" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(1524, 3387)
 relic_type = "numbskull"
 
 [node name="Sprite2D" parent="Relics/NumbSkull" index="2"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("13_u5gmu")
+texture = ExtResource("14_8y6vc")
 
-[node name="deaddiver" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="deaddiver" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(9462, 4276)
 rotation = 0.735743
 relic_type = "deaddiver"
 
 [node name="Sprite2D" parent="Relics/deaddiver" index="2"]
-texture = ExtResource("15_axpkj")
+texture = ExtResource("15_uxc07")
 
-[node name="deaddiver2" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="deaddiver2" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(4837, 3144)
 rotation = 0.735743
 relic_type = "deaddiver2"
 
 [node name="Sprite2D" parent="Relics/deaddiver2" index="2"]
-texture = ExtResource("15_axpkj")
+texture = ExtResource("15_uxc07")
 
-[node name="deaddiver3" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="deaddiver3" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(3138, 3727)
 rotation = -0.98764
 relic_type = "deaddiver3"
 
 [node name="Sprite2D" parent="Relics/deaddiver3" index="2"]
-texture = ExtResource("15_axpkj")
+texture = ExtResource("15_uxc07")
 
-[node name="deaddiver4" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="deaddiver4" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(3038, 5911)
 rotation = -0.98764
 relic_type = "deaddiver4"
 
 [node name="Sprite2D" parent="Relics/deaddiver4" index="2"]
-texture = ExtResource("15_axpkj")
+texture = ExtResource("15_uxc07")
 
-[node name="deaddiver5" parent="Relics" instance=ExtResource("12_owyi0")]
+[node name="deaddiver5" parent="Relics" instance=ExtResource("12_csn5e")]
 position = Vector2(957, 2914)
 rotation = 1.1343
 relic_type = "deaddiver5"
 
 [node name="Sprite2D" parent="Relics/deaddiver5" index="2"]
-texture = ExtResource("15_axpkj")
+texture = ExtResource("15_uxc07")
 
 [node name="Tutorial Bounds" type="Node2D" parent="."]
+position = Vector2(122, 655)
+rotation = -1.03062
 
 [node name="Area2D" type="Area2D" parent="Tutorial Bounds"]
 position = Vector2(3346, 599)
 rotation = 0.306858
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Bounds/Area2D"]
-position = Vector2(-65.2078, -161.467)
+position = Vector2(-2738.22, 531.97)
 shape = SubResource("RectangleShape2D_2um0i")
+
+[node name="map" type="Node2D" parent="."]
+position = Vector2(-638.001, -153)
+scale = Vector2(10, 10)
+
+[node name="AztecPool" type="Sprite2D" parent="map"]
+texture_filter = 1
+position = Vector2(423, 314)
+texture = ExtResource("15_v6gqa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="map/AztecPool"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map/AztecPool/StaticBody2D"]
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(-399.9, -300, -327.8, -300, -327.8, -227.1, -257.9, -226.8, -258.7, -154.5, -188.3, -154.9, -187.8, -82.6, -117.6, -82.5, -117.7, -10.1, -47.1999, -9.79999, -47.1999, 62.5, 47.0001, 62.5, 47.0001, -10.4, 117.9, -10.1, 117.7, -82.4, 187.7, -82.7, 188, -155.7, 257.7, -155.7, 258, -227.2, 328.3, -227.2, 327.5, -300.4, 400.1, -300.4, 399.8, 295.9, -399, 294.8)
 
 [connection signal="relic_entered" from="Relics/MadSkull" to="." method="_on_relic_entered"]
 [connection signal="body_entered" from="Relics/MadSkull/Area2D" to="Relics/MadSkull" method="_on_area_2d_body_entered"]
